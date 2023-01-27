@@ -1,4 +1,4 @@
-# 📅 ️A small schedule-sharing tool
+# <center>📅 ️A small schedule-sharing tool</center>
 
 *(a temporary name until I can find a better one :D)*
 

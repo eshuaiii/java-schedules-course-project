@@ -1,4 +1,4 @@
-# <center>📅 ️A small schedule-sharing tool</center>
+<h1 align="center"> 📅 ️A small schedule-sharing tool</h1>
 
 *(a temporary name until I can find a better one :D)*
 

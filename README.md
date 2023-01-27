@@ -14,6 +14,7 @@ I want to extend this idea further into my CPSC 210 term project and recreate th
 store different user accounts (locally to satisfy the internet constraint), then enable each user to input
 in their courses. The applet would then store these to their account, and parse through to find other students
 who are in their classes.
+
 ---
 ## 💾 What will the application do?
 

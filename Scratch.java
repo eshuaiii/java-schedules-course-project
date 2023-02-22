@@ -15,26 +15,64 @@
     But then...I need to make sure that stays even if a user logs out.
         Initialization step and login/out flow must be diff
 
-     Question: is there such thing as multi-reference fields like in Wix?
-        Otherwise right now when a user adds a new course, we'd create the course if it doesn't exist, add it to
-        the listofcourses field, and also add the user into the course object. Yikes.
-
     --- Thinking about user stories ---
     "As a user, I want to be able to log in and sign up in the applet"
-        - Account.signup: prompt user for name, username, password.
+        - CourseApp.signup: prompt user for name, username, password.
+          Account.signup: does internal workflow to add user to DB.
             - New course workflow (keep the "give and return system")? This would be another method in...CourseApp?
                 - Different method not part of Account......or honestly it can too (one new, one for normal)
             - CourseApp signup (prompting user deets), then Account public -> private signup to perform ugly stuff
             - checks: username already exists, username not alphanumeric, first + last name must exist, password >8 ?
                       fields empty (courseapp + account)
-        - Account.login: username, password.
+        - CourseApp.login: username, password.
+          Account.login: does internal workflow to check for user
             - What's a good way to store passwords? Go naive first, then keep going
             - Once again, CourseApp login to ask for deets, then private to check
             - checks: password incorrect, username dne, either one field empty (courseapp + account)
     "As a user, I want to be able to add a course that I am taking."
-        - Account.addCourse:
+    "As a user, I want to be able to store an arbitrary number of courses that I'm taking"
+        - CourseApp.addCourse: prompts for name of course, number, section, date/time?, prof?
+            - Implementing an autofill feature: that's for later on; can take advantage of UBCGrades
+          Account.addCourse: adds the course into the account's ListOfCourses field,
+          Course.addStudent: and adds the student into that course's ListOfStudents field.
+        - checks: adding a course that doesn't exist at all, that does exist, that already exists in user, missing deets
+                  fields have incorrect inputs?
+    "As a user, I want to be able to remove a course that I am no longer taking"
+        - CourseApp.removeCourse: numbered list of all the courses one is taking, prompts for number
+          Account.removeCourse: removes the course from that account's ListOfCourses field,
+          Course.removeCourse: and removes the student from that course's ListOfStudents field.
+        - checks: selecting a number that is not in the list, invalid input
+    "As a user, I want to be able to view the courses that I am registered in."
+        - CourseApp.viewCourses: see all the courses that one is registered in
+            - Be able to call methods to add/remove classes
+            - Type in a number to see everyone in that class
+            - Also be able to call method to view classmates
+          Account.viewCourses: parse through all the courses in ListOfCourses
+        - checks: no courses, one course, many courses
+    "As a user, I want to be able to view the names of other users that share a course as I do."
+        - Course.viewClassmates: given a course, see who shares that course.
+        - checks: a course that doesn't exist, a course with one student (just them), a course with many
+    "As a user, I want to be able to search for a course and see who is in that course."
+        - CourseApp.searchCourse: type in a name of a course and get results
+          Course.search: once details are provided, search for given element
+            - How best should I do this? Give key + value? Do dictionaries exist in Java?
+          Course.viewClassmates: once the course is found, return classmates
+        - checks: course does not exist, missing info, same checks as above
+    "As a user, I want to be able to search for a user and see which courses I share with them."
+        - CourseApp.searchStudent: type in username/name of student
+          Account.seeSharedCourses: parses through both lists to compare what courses in common.
+            - Could also call Course.viewClassmates to see other students that share the course?
+        - checks: student name does not exist, no courses shared, one course shared, many shared.
 
 
+    --- Questions ---
+    - Is there such thing as multi-reference fields like in Wix?
+        Otherwise right now when a user adds a new course, we'd create the course if it doesn't exist, add it to
+        the listofcourses field, and also add the user into the course object. Yikes.
+    - Is there a good way to store passwords?
+        - Do I need to import a library?
+    - What kind of data type would work best for my data?
+    - How should I represent the main ListOfCourses?
      */
 
 public class Scratch {

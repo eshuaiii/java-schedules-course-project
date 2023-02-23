@@ -40,7 +40,7 @@
     "As a user, I want to be able to remove a course that I am no longer taking"
         - CourseApp.removeCourse: numbered list of all the courses one is taking, prompts for number
           Account.removeCourse: removes the course from that account's ListOfCourses field,
-          Course.removeCourse: and removes the student from that course's ListOfStudents field.
+          Course.removeStudent: and removes the student from that course's ListOfStudents field.
         - checks: selecting a number that is not in the list, invalid input
     "As a user, I want to be able to view the courses that I am registered in."
         - CourseApp.viewCourses: see all the courses that one is registered in

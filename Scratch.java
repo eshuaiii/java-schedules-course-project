@@ -73,6 +73,9 @@
         - Do I need to import a library?
     - What kind of data type would work best for my data?
     - How should I represent the main ListOfCourses?
+
+    --- FUTURE IDEAS ---
+    - Make it possible for someone to search for everyone in a section
      */
 
 public class Scratch {

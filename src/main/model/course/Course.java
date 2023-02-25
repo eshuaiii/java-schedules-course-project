@@ -35,6 +35,23 @@ public class Course {
         return false; // stub
     }
 
+    // EFFECTS: returns a concatenated string of the form <courseName><courseNum>-<courseSection>
+    public String courseToKey() {
+        return this.getCourseName() + this.getCourseNum() + "-" + this.getCourseSection();
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public Integer getCourseNum() {
+        return courseNum;
+    }
+
+    public Integer getCourseSection() {
+        return courseSection;
+    }
+
     public List<Student> getStudentList() {
         return studentList;
     }

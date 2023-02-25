@@ -78,6 +78,6 @@
     - Make it possible for someone to search for everyone in a section
      */
 
-public class Scratch {
 
+public class Scratch {
 }

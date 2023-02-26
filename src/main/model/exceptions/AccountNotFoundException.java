@@ -1,4 +1,4 @@
 package model.exceptions;
 
-public class AccountNotFoundException extends Exception {
+public class AccountNotFoundException extends LoginException {
 }

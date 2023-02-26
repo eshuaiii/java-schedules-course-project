@@ -2,37 +2,48 @@ package model.course;
 
 import model.account.Student;
 
-import java.util.List;
+import java.util.*;
 
 public class Course {
     private String courseName;
     private Integer courseNum;
     private Integer courseSection;
-    private List<Student> studentList;
+    private Collection<Student> studentList;
 
     // EFFECTS: creates a new course given its name, number, and section, then creates an empty studentList.
     public Course(String courseName, Integer courseNum, Integer courseSection) {
-        // stub
+        this.courseName = courseName;
+        this.courseNum = courseNum;
+        this.courseSection = courseSection;
+        studentList = new HashSet<Student>();
     }
 
     // REQUIRES: student is not already in studentList.
     // MODIFIES: this
     // EFFECTS: adds a student to the course's studentList.
+    // TODO: Should I also modify student again here? Is public a bad idea?
     public Boolean addStudent(Student student) {
-        return false; // stub
+        return studentList.add(student);
     }
 
     // REQUIRES: student is in studentList.
     // MODIFIES: this
     // EFFECTS: removes a student from the course's studentList
+    // TODO: Should I also modify student again here? Is public a bad idea?
     public Boolean removeStudent(Student student) {
-        return false; // stub
+        return studentList.remove(student);
     }
 
-    // MODIFIES: this
-    // EFFECTS: searches through studentList for the given student. Returns true if found, false otherwise.
-    public Boolean searchStudent(Student student) {
-        return false; // stub
+    // EFFECTS: returns a sorted list of studentList in string form
+    public List<String> getStudentListSorted() {
+        List<String> studentArrayList = new ArrayList<String>();
+
+        for (Student s : studentList) {
+            studentArrayList.add(s.getFullName());
+        }
+        Collections.sort(studentArrayList);
+
+        return studentArrayList;
     }
 
     // EFFECTS: returns a concatenated string of the form <courseName><courseNum>-<courseSection>
@@ -52,7 +63,7 @@ public class Course {
         return courseSection;
     }
 
-    public List<Student> getStudentList() {
+    public Collection<Student> getStudentList() {
         return studentList;
     }
 }

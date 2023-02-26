@@ -59,7 +59,7 @@
           Course.viewClassmates: once the course is found, return classmates
         - checks: course does not exist, missing info, same checks as above
     "As a user, I want to be able to search for a user and see which courses I share with them."
-        - CourseApp.searchStudent: type in username/name of student
+        - CourseApp.searchStudentCourses: type in username/name of student
           Account.seeSharedCourses: parses through both lists to compare what courses in common.
             - Could also call Course.viewClassmates to see other students that share the course?
         - checks: student name does not exist, no courses shared, one course shared, many shared.
@@ -73,11 +73,73 @@
         - Do I need to import a library?
     - What kind of data type would work best for my data?
     - How should I represent the main ListOfCourses?
+    - If a function returns a new object, is that MODIFIES?
+    - Check model.course - do I need to modify student again in course?
 
     --- FUTURE IDEAS ---
-    - Make it possible for someone to search for everyone in a section
+    - Make it possible for someone to search for everyone in a course, independent of section
+    - Search by username AND name?
      */
 
 
 public class Scratch {
+    /* --- ACTUALLY NO THIS ISN'T RIGHT: CODE TO PUT INTO UI.viewClassmates ---
+        ArrayList<String> classmatesCleaned = new ArrayList<String>();
+
+        for (Student s : classmates) {
+            do something to classmatesCleaned
+        }
+        ArrayList<String> classmatesSorted = classmatesCleaned.sort();
+        return classmatesSorted;
+
+    --- CODE FOR UI.seeSharedStudents ---
+    Start with AllAccounts.searchStudent, then Student.getSharedCourses()
+
+
+
+    */
+    // PREVIOUSLY IN AllAccounts: now use searchStudent, then getSharedCourses
+    // EFFECTS: given a username, searches for a student in accountList.
+    //          If found, returns list of courses, null otherwise.
+    public Collection<Course> searchStudentCourses(String username) {
+        Account requiredAccount = accountList.get(username);
+        Student requiredStudent;
+
+        if (requiredAccount == null) {
+            return null; // TODO: throw StudentNotFoundException
+        } else {
+            requiredStudent = requiredAccount.getStudent();
+        }
+
+        return requiredStudent.getCourseList().values();
+
+    }
+
+    // PREVIOUSLY IN AllAccounts: can use course
+    // EFFECTS: parsing through each Account, checks if Account has course, and adds the student if so.
+    //          If no classmates exist, returns empty list.
+    public List<Student> viewClassmates(Course course) {
+        ArrayList<Student> classmates = new ArrayList<Student>();
+
+        for (Account a : accountList.values()) {
+            // inside the account, get the student
+            Student currentStudent = a.getStudent();
+            // then its hashmap courseList, then the course by key if it exists.
+            Course hasCourse = currentStudent.getCourseList().get(course.courseToKey());
+
+            if (hasCourse != null) {
+                classmates.add(currentStudent);
+            }
+        }
+
+        return classmates;
+
+    }
+
+    // PREVIOUSLY IN Course, IDK why it's here
+    // MODIFIES: this
+    // EFFECTS: searches through studentList for the given student. Returns true if found, false otherwise.
+    public Boolean searchStudent(Student student) {
+        return false; // stub
+    }
 }

@@ -15,33 +15,31 @@ public class Student {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
-        courseList = new HashMap<String, Course>();
+        courseList = new HashMap<>();
     }
 
     // REQUIRES: course is not already in courseList
     // MODIFIES: this
     // EFFECTS: adds the course to the student's courseList, as well as the course's studentList.
     //          Returns true if successful.
-    public Boolean addCourse(Course course) {
+    public void addCourse(Course course) {
         courseList.put(course.courseToKey(), course);
         course.addStudent(this);
-        return true;
     }
 
     // REQUIRES: course is in courseList
     // MODIFIES: this
     // EFFECTS: removes the course from the student's courseList, as well as the course's studentList.
     //          Returns true if successful.
-    public Boolean removeCourse(Course course) {
+    public void removeCourse(Course course) {
         courseList.remove(course.courseToKey());
         course.removeStudent(this);
-        return true;
     }
 
     // EFFECTS: given the student, return a list of courses that this student shares with the given student.
     public List<Course> getSharedCourses(Student s2) {
         HashMap<String, Course> s2Courses = s2.getCourseList();
-        List<Course> sharedCourses = new ArrayList<Course>();
+        List<Course> sharedCourses = new ArrayList<>();
 
         for (Course c : this.getCourses()) {
             Course hasCourse = s2Courses.get(c.courseToKey());

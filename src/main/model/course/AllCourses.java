@@ -1,10 +1,6 @@
 package model.course;
 
-import model.account.Student;
-
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class AllCourses {
     HashMap<String, Course> courseList;
@@ -16,10 +12,9 @@ public class AllCourses {
 
     // MODIFIES: this
     // EFFECTS: Creates a new course
-    public Boolean addCourse(String courseName, Integer courseNum, Integer courseSection) {
+    public void addCourse(String courseName, Integer courseNum, Integer courseSection) {
         Course course = new Course(courseName, courseNum, courseSection);
         courseList.put(course.courseToKey(), course);
-        return true;
     }
 
     // MODIFIES: this
@@ -33,9 +28,12 @@ public class AllCourses {
         }
     }
 
-    // TODO: use key method to search for item. If not null, return list, otherwise return null.
-    // searches and returns the given course, null if not found
+    // EFFECTS: searches and returns the given course, null if not found
     public Course searchCourse(String courseName, Integer courseNum, Integer courseSection) {
-        return courseList.get(courseName + courseNum + "-" + courseSection);
+        return courseList.get(courseName + "-" + courseNum + "-" + courseSection);
+    }
+
+    public HashMap<String, Course> getCourseList() {
+        return courseList;
     }
 }

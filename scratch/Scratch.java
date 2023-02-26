@@ -92,10 +92,10 @@ public class Scratch {
         ArrayList<String> classmatesSorted = classmatesCleaned.sort();
         return classmatesSorted;
 
-    --- CODE FOR UI.seeSharedStudents ---
+    --- CODE FOR UI.getSharedCourses---
     Start with AllAccounts.searchStudent, then Student.getSharedCourses()
 
-
+    Add/remove courses: first search for the course, THEN call the respective add/remove.
 
     */
     // PREVIOUSLY IN AllAccounts: now use searchStudent, then getSharedCourses

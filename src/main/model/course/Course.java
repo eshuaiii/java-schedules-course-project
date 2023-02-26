@@ -15,7 +15,7 @@ public class Course {
         this.courseName = courseName;
         this.courseNum = courseNum;
         this.courseSection = courseSection;
-        studentList = new HashSet<Student>();
+        studentList = new HashSet<>();
     }
 
     // REQUIRES: student is not already in studentList.
@@ -36,7 +36,7 @@ public class Course {
 
     // EFFECTS: returns a sorted list of studentList in string form
     public List<String> getStudentListSorted() {
-        List<String> studentArrayList = new ArrayList<String>();
+        List<String> studentArrayList = new ArrayList<>();
 
         for (Student s : studentList) {
             studentArrayList.add(s.getFullName());
@@ -46,9 +46,9 @@ public class Course {
         return studentArrayList;
     }
 
-    // EFFECTS: returns a concatenated string of the form <courseName><courseNum>-<courseSection>
+    // EFFECTS: returns a concatenated string of the form <courseName>-<courseNum>-<courseSection>
     public String courseToKey() {
-        return this.getCourseName() + this.getCourseNum() + "-" + this.getCourseSection();
+        return this.getCourseName() + "-" + this.getCourseNum() + "-" + this.getCourseSection();
     }
 
     public String getCourseName() {

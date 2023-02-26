@@ -1,11 +1,9 @@
 package model.account;
 
-import model.course.Course;
-
-import java.util.*;
+import java.util.HashMap;
 
 public class AllAccounts {
-    HashMap<String, Account> accountList;
+    private HashMap<String, Account> accountList;
 
     // EFFECTS: initializes AllAccounts with an empty list of accounts.
     public AllAccounts() {
@@ -19,7 +17,7 @@ public class AllAccounts {
         // get method, then set as student and use Account.login
         Account wantedAccount = accountList.get(username);
         if (wantedAccount != null) {
-            return wantedAccount.login(password);
+            return wantedAccount.login(password); // TODO: might also throw IncorrectPasswordException
         } else {
             return null; // TODO: throw AccountNotFoundException
         }
@@ -28,6 +26,7 @@ public class AllAccounts {
     // MODIFIES: this
     // EFFECTS: creates a new Account, adds to studentList, and returns its Student object
     public Student signup(String username, String firstName, String lastName, String password) {
+        // TODO: prevent someone from using the same username
         Account newAccount = new Account(username, firstName, lastName, password);
         accountList.put(username, newAccount);
         return newAccount.getStudent();
@@ -37,13 +36,15 @@ public class AllAccounts {
     //          If found, returns the Student, null otherwise.
     public Student searchStudent(String username) {
         Account requiredAccount = accountList.get(username);
-        Student requiredStudent;
 
         if (requiredAccount == null) {
             return null; // TODO: throw StudentNotFoundException
         } else {
-            return requiredStudent = requiredAccount.getStudent();
+            return requiredAccount.getStudent();
         }
     }
 
+    public HashMap<String, Account> getAccountList() {
+        return accountList;
+    }
 }

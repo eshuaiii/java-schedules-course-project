@@ -39,6 +39,11 @@ public class Account {
         return lastName;
     }
 
+    // TODO: I don't want a publicly available getPassword method, but I need it for tests. How do fix?
+    public String getPassword() {
+        return password;
+    }
+
     public Student getStudent() {
         return student;
     }

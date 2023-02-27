@@ -7,7 +7,7 @@ public class AllCourses {
 
     // EFFECTS: Initializes AllCourses with an empty HashSet
     public AllCourses() {
-        courseList = new HashMap<String, Course>();
+        courseList = new HashMap<>();
     }
 
     // MODIFIES: this

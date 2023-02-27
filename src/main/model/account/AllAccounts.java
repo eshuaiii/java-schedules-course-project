@@ -7,7 +7,7 @@ public class AllAccounts {
 
     // EFFECTS: initializes AllAccounts with an empty list of accounts.
     public AllAccounts() {
-        accountList = new HashMap<String, Account>();
+        accountList = new HashMap<>();
     }
 
     // EFFECTS: goes through the entire list of accounts to see if one matches username: if so, calls method

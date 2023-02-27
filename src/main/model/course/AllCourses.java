@@ -12,9 +12,15 @@ public class AllCourses {
 
     // MODIFIES: this
     // EFFECTS: Creates a new course
-    public void addCourse(String courseName, Integer courseNum, Integer courseSection) {
+    public Course addCourse(String courseName, Integer courseNum, Integer courseSection) {
         Course course = new Course(courseName, courseNum, courseSection);
-        courseList.put(course.courseToKey(), course);
+        if (courseList.get(course.courseToKey()) == null) {
+            courseList.put(course.courseToKey(), course);
+            return course;
+        } else {
+            return courseList.get(course.courseToKey());
+        }
+
     }
 
     // MODIFIES: this

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -160,9 +160,9 @@ class StudentTest {
         student2.addCourse(course1);
         student3.addCourse(course2);
 
-        Collection<Course> courseList1 = student1.getCourses();
-        Collection<Course> courseList2 = student2.getCourses();
-        Collection<Course> courseList3 = student3.getCourses();
+        List<Course> courseList1 = student1.getCourses();
+        List<Course> courseList2 = student2.getCourses();
+        List<Course> courseList3 = student3.getCourses();
 
         // Then run:
         assertEquals(2, courseList1.size());

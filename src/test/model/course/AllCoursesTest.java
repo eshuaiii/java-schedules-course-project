@@ -23,28 +23,26 @@ public class AllCoursesTest {
     @Test
     void addCourseTest() {
         // add one
-        courseList.addCourse("CPSC", 210, 203);
+        Course course1 = courseList.addCourse("CPSC", 210, 203);
         assertEquals(1, courseList.getCourseList().size());
         assertTrue(courseList.getCourseList().containsKey("CPSC-210-203"));
-        assertEquals("CPSC", courseList.getCourseList().get("CPSC-210-203").getCourseName());
-        assertEquals(210, courseList.getCourseList().get("CPSC-210-203").getCourseNum());
-        assertEquals(203, courseList.getCourseList().get("CPSC-210-203").getCourseSection());
+        assertEquals("CPSC", course1.getCourseName());
+        assertEquals(210, course1.getCourseNum());
+        assertEquals(203, course1.getCourseSection());
 
         // add the same one
-        courseList.addCourse("CPSC", 210, 203);
+        Course course2 = courseList.addCourse("CPSC", 210, 203);
         assertEquals(1, courseList.getCourseList().size());
         assertTrue(courseList.getCourseList().containsKey("CPSC-210-203"));
-        assertEquals("CPSC", courseList.getCourseList().get("CPSC-210-203").getCourseName());
-        assertEquals(210, courseList.getCourseList().get("CPSC-210-203").getCourseNum());
-        assertEquals(203, courseList.getCourseList().get("CPSC-210-203").getCourseSection());
+        assertEquals(course2, course1); // the references should be the same!
 
         // add another one
-        courseList.addCourse("AB", 1, 9999);
+        Course course3 = courseList.addCourse("AB", 1, 9999);
         assertEquals(2, courseList.getCourseList().size());
         assertTrue(courseList.getCourseList().containsKey("AB-1-9999"));
-        assertEquals("AB", courseList.getCourseList().get("AB-1-9999").getCourseName());
-        assertEquals(1, courseList.getCourseList().get("AB-1-9999").getCourseNum());
-        assertEquals(9999, courseList.getCourseList().get("AB-1-9999").getCourseSection());
+        assertEquals("AB", course3.getCourseName());
+        assertEquals(1, course3.getCourseNum());
+        assertEquals(9999, course3.getCourseSection());
 
     }
 

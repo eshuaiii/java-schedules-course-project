@@ -21,6 +21,7 @@ class AllAccountsTest {
 
     @Test
     void signupTest() {
+        // add a account
         Student student1 = accountList.signup("abc", "Eric", "S", "abcdefg");
         Account account1 = accountList.getAccountList().get("abc");
         assertEquals("abc", account1.getUsername());
@@ -30,6 +31,7 @@ class AllAccountsTest {
         assertEquals(student1, account1.getStudent());
         assertEquals(1, accountList.getAccountList().size());
 
+        // add another account
         Student student2 = accountList.signup("iLoveJaVa1", "Hey", "Boy", "pplp2!pplo");
         Account account2 = accountList.getAccountList().get("iLoveJaVa1");
         assertEquals("iLoveJaVa1", account2.getUsername());
@@ -37,6 +39,17 @@ class AllAccountsTest {
         assertEquals("Boy", account2.getLastName());
         assertEquals("pplp2!pplo", account2.getPassword());
         assertEquals(student2, account2.getStudent());
+        assertEquals(2, accountList.getAccountList().size());
+
+        // attempt to add a third student with the same username
+        Student student3 = accountList.signup("iLoveJaVa1", "Ree", "Ree", "aaaaaaa");
+        Account account3 = accountList.getAccountList().get("iLoveJaVa1");
+        assertNull(student3);
+        assertEquals("iLoveJaVa1", account3.getUsername());
+        assertEquals("Hey", account3.getFirstName());
+        assertEquals("Boy", account3.getLastName());
+        assertEquals("pplp2!pplo", account3.getPassword());
+        assertEquals(student2, account3.getStudent()); // check if it's still the same
         assertEquals(2, accountList.getAccountList().size());
     }
 

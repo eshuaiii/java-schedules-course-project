@@ -51,6 +51,11 @@ public class Course {
         return this.getCourseName() + "-" + this.getCourseNum() + "-" + this.getCourseSection();
     }
 
+    // EFFECTS: returns a long string of the form <courseName> <courseNum>, Section <courseSection>
+    public String courseLong() {
+        return this.getCourseName() + " " + this.getCourseNum() + ", Section " + this.getCourseSection();
+    }
+
     public String getCourseName() {
         return courseName;
     }

@@ -12,7 +12,6 @@ public class AllAccounts {
 
     // EFFECTS: goes through the entire list of accounts to see if one matches username: if so, calls method
     //          to attempt sign in. Returns a Student if successful, null if not.
-    // checks all students and attempts to log in
     public Student login(String username, String password) {
         // get method, then set as student and use Account.login
         Account wantedAccount = accountList.get(username);
@@ -26,7 +25,9 @@ public class AllAccounts {
     // MODIFIES: this
     // EFFECTS: creates a new Account, adds to studentList, and returns its Student object
     public Student signup(String username, String firstName, String lastName, String password) {
-        // TODO: prevent someone from using the same username
+        if (accountList.get(username) != null) {
+            return null;
+        }
         Account newAccount = new Account(username, firstName, lastName, password);
         accountList.put(username, newAccount);
         return newAccount.getStudent();

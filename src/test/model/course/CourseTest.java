@@ -116,4 +116,10 @@ getstudentlistsorted: add a bunch of students, check for sort. Check same first 
         assertEquals("CPSC-210-203", course1.courseToKey());
         assertEquals("AB-1-9999", course2.courseToKey());
     }
+
+    @Test
+    void courseLongTest() {
+        assertEquals("CPSC 210, Section 203", course1.courseLong());
+        assertEquals("AB 1, Section 9999", course2.courseLong());
+    }
 }

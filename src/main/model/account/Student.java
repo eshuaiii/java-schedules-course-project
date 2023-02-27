@@ -58,8 +58,8 @@ public class Student {
     }
 
     // EFFECTS: returns the courses from courseList, as opposed to the entire HashMap.
-    public Collection<Course> getCourses() {
-        return courseList.values();
+    public List<Course> getCourses() {
+        return new ArrayList<>(courseList.values());
     }
 
     public String getUsername() {

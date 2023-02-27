@@ -5,6 +5,7 @@ import model.course.AllCourses;
 import model.account.Student;
 import model.course.Course;
 
+import java.text.NumberFormat;
 import java.util.*;
 
 public class CourseApp {
@@ -57,7 +58,8 @@ public class CourseApp {
     //          If no incorrect inputs, creates a new student and adds to accountList.
     private void signup() {
         // TODO: figure out how to capitalize names! How to import apache?
-        // TODO: possible refactor since username check already exists in AllAccounts?
+        // TODO: possible refactor since username check already exists in AllAccounts? -> would go over 25
+        // TODO: allow spaces in username?
         System.out.println("\n\033[3m📍 Login Page -> Signup\033[0m");
         System.out.println("📝 Please enter your username:");
         String username = input.next();
@@ -178,7 +180,7 @@ public class CourseApp {
         } else if (command.equals("s")) {
             signOut();
         } else if (command.equals("q")) {
-            System.out.println("Have a great day! See you soon.");
+            System.out.println("Have a great day! See you soon. 👋");
             keepGoingMain = false;
             keepGoingLogin = false;
         } else {
@@ -189,26 +191,22 @@ public class CourseApp {
     // MODIFIES: this
     // EFFECTS: adds a course to the currentStudent.
     // TODO: remove redundancy with this and searchCourse (have search method that returns a list of values?)
-    @SuppressWarnings("methodlength")
+
     private void addCourse() {
         System.out.println("\n\033[3m📍 Main Menu -> Add Course\033[0m");
-        System.out.println("📝 Please enter the course name's shorthand (e.g. CPSC, APSC):");
-        String courseName = input.next().toUpperCase();
-
-        Boolean isSuccessful = false;
+        List<String> courseEntry = courseEntry();
+        String courseName = courseEntry.get(0);
         Integer courseNum = -1;
         Integer courseSection = -1;
+
         try {
-            System.out.println("📝 Please enter the course number (e.g. 210, 100):");
-            courseNum = input.nextInt();
-            System.out.println("📝 Please enter your course section (e.g. 203, 007):");
-            courseSection = input.nextInt();
-            isSuccessful = true;
-        } catch (InputMismatchException e) {
+            courseNum = Integer.parseInt(courseEntry.get(1));
+            courseSection = Integer.parseInt(courseEntry.get(2));
+        } catch (NumberFormatException e) {
             System.out.println("Oops - the course number and section must be an integer!");
             failedMain("a");
         }
-
+        // TODO: find a way to break after exception OR refactor this to run with try-catch above
         if (courseName.isEmpty() || courseNum.equals(-1) || courseSection.equals(-1)) {
             System.out.println("\n⚠️ Oops - no empty inputs please!");
             failedMain("a");
@@ -217,42 +215,8 @@ public class CourseApp {
             currentStudent.addCourse(course);
             Course checkCourse = currentStudent.getCourseList().get(course.courseToKey());
             System.out.println("\n✅ Course added: " + checkCourse.courseLong());
-        }
-    }
-
-    // EFFECTS: processes user command after a fault in any main operations
-    // TODO: move this method around so to avoid this warning
-    @SuppressWarnings("methodlength")
-    private void failedMain(String method) {
-        Boolean keepGoing = true;
-        String command = null;
-        while (keepGoing) {
-            System.out.println("Would you like to:");
-            System.out.println("\t 1 -> Try again");
-            System.out.println("\t 2 -> Go back to the Main Menu");
-
-            command = input.next();
-
-            if (command.equals("1")) {
-                keepGoing = false;
-                if (method.equals("a")) {
-                    addCourse();
-                } else if (method.equals("r")) {
-                    removeCourse();
-                } else if (method.equals("v")) {
-                    viewCourses();
-                } else if (method.equals("c")) {
-                    searchCourse();
-                } else if (method.equals("u")) {
-                    searchStudent();
-                } else {
-                    System.err.println("This is very bad");
-                }
-            } else if (command.equals("2")) {
-                break;
-            } else {
-                System.out.println("Sorry - I didn't understand that. Try again!");
-            }
+            System.out.println("Press 'enter' to return to the main menu...");
+            input.next();
         }
     }
 
@@ -269,17 +233,17 @@ public class CourseApp {
             viewCoursesInternal(courseList);
             try {
                 Integer command = input.nextInt();
-                try {
-                    Course removedCourse = courseList.get(command - 1);
-                    currentStudent.removeCourse(removedCourse);
-                    this.courseList.checkForEmptyCourse(removedCourse);
-                    System.out.println("\n✅ Course removed!");
-                } catch (IndexOutOfBoundsException e) {
-                    System.out.println("Oops - that's not a valid selection!");
-                    failedMain("r");
-                }
-                // TODO: weird issue about double printing?
+                Course removedCourse = courseList.get(command - 1);
+                currentStudent.removeCourse(removedCourse);
+                this.courseList.checkForEmptyCourse(removedCourse);
+                System.out.println("\n✅ Course removed!");
+                System.out.println("Press 'enter' to return to the main menu...");
+                input.next();
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Oops - that's not a valid selection!");
+                failedMain("r");
             } catch (InputMismatchException e) {
+                // TODO: weird issue about double printing?
                 System.out.println("Oops - your selection must be an integer!");
                 failedMain("r");
             }
@@ -293,31 +257,23 @@ public class CourseApp {
 
         if (courseList.isEmpty()) {
             System.out.println("\n⚠️ You are not enrolled in any courses!");
+            System.out.println("Press 'enter' to return to the main menu...");
+            input.next();
         } else {
-            System.out.println("\n📝 Here are your courses! Select a course to view your classmates,"
+            System.out.println("\n📝 Here are your courses! Select a course to view your classmates, "
                                  + "or any other number to go back to the main menu.");
             viewCoursesInternal(courseList);
             try {
                 Integer command = input.nextInt();
-                try {
-                    Course viewCourse = courseList.get(command - 1);
-                    viewClassmates(viewCourse);
-                } catch (IndexOutOfBoundsException e) {
-                    System.out.println("Returning to the Main Menu.");
-                }
-                // TODO: weird issue about double printing?
+                Course viewCourse = courseList.get(command - 1);
+                viewClassmates(viewCourse);
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Returning to the Main Menu.");
             } catch (InputMismatchException e) {
+                // TODO: weird issue about double printing? Might be because of nextInt?
                 System.out.println("Oops - your selection must be an integer!");
                 failedMain("v");
             }
-        }
-    }
-
-    // EFFECTS: prints out a user's courses, numbered. Used in tandem with other methods that accept user input.
-    private void viewCoursesInternal(List<Course> courseList) {
-        for (int i = 0; i < courseList.size(); i++) {
-            Course course = courseList.get(i);
-            System.out.println("\t" + (i + 1) + " -> " + course.courseLong());
         }
     }
 
@@ -325,26 +281,26 @@ public class CourseApp {
     private void viewClassmates(Course course) {
         System.out.println("\n\033[3m📍 Main Menu -> View Courses -> View Students in Course\033[0m");
         System.out.println("Students in " + course.courseLong());
-        System.out.println(course.getStudentListSorted());
+        for (String s : course.getStudentListSorted()) {
+            System.out.println("\t" + s);
+        }
+        System.out.println("Press 'enter' to return to the main menu...");
+        input.next();
     }
 
     // EFFECTS: searches for a course given user inputs
     @SuppressWarnings("methodlength")
     private void searchCourse() {
         System.out.println("\n\033[3m📍 Main Menu -> Search for a Course\033[0m");
-        System.out.println("📝 Please enter the course name's shorthand (e.g. CPSC, APSC):");
-        String courseName = input.next().toUpperCase();
-
-        Boolean isSuccessful = false;
+        List<String> courseEntry = courseEntry();
+        String courseName = courseEntry.get(0);
         Integer courseNum = -1;
         Integer courseSection = -1;
+
         try {
-            System.out.println("📝 Please enter the course number (e.g. 210, 100):");
-            courseNum = input.nextInt();
-            System.out.println("📝 Please enter your course section (e.g. 203, 007):");
-            courseSection = input.nextInt();
-            isSuccessful = true;
-        } catch (InputMismatchException e) {
+            courseNum = Integer.parseInt(courseEntry.get(1));
+            courseSection = Integer.parseInt(courseEntry.get(2));
+        } catch (NumberFormatException e) {
             System.out.println("Oops - the course number and section must be an integer!");
             failedMain("c");
         }
@@ -366,6 +322,7 @@ public class CourseApp {
     }
 
     // EFFECTS: searches for a student's courses given inputs
+    // TODO: refactor for loop to reduce method length
     @SuppressWarnings("methodlength")
     private void searchStudent() {
         System.out.println("\n\033[3m📍 Main Menu -> Search for a Student\033[0m");
@@ -404,6 +361,8 @@ public class CourseApp {
             Course course = sharedCourses.get(i);
             System.out.println("\t" + course.courseLong());
         }
+        System.out.println("Press 'enter' to return to the main menu...");
+        input.next();
     }
 
     //
@@ -412,5 +371,65 @@ public class CourseApp {
         keepGoingMain = false;
         keepGoingLogin = true;
         System.out.println("You've been signed out! See you soon. 👋");
+    }
+
+    // EFFECTS: prints out a user's courses, numbered. Used in tandem with other methods that accept user input.
+    private void viewCoursesInternal(List<Course> courseList) {
+        for (int i = 0; i < courseList.size(); i++) {
+            Course course = courseList.get(i);
+            System.out.println("\t" + (i + 1) + " -> " + course.courseLong());
+        }
+    }
+
+    // EFFECTS: method facilitates course entry: used in tandem with other methods
+    private List<String> courseEntry() {
+        List<String> courseEntry = new ArrayList<>();
+        System.out.println("📝 Please enter the course name's shorthand (e.g. CPSC, APSC):");
+        String courseName = input.next().toUpperCase();
+        System.out.println("📝 Please enter the course number (e.g. 210, 100):");
+        String courseNum = input.next();
+        System.out.println("📝 Please enter your course section (e.g. 203, 007):");
+        String courseSection = input.next();
+        courseEntry.add(courseName);
+        courseEntry.add(courseNum);
+        courseEntry.add(courseSection);
+
+        return courseEntry;
+    }
+
+    // EFFECTS: processes user command after a fault in any main operations
+    // TODO: move this method around so to avoid this warning
+    @SuppressWarnings("methodlength")
+    private void failedMain(String method) {
+        Boolean keepGoing = true;
+        String command = null;
+        while (keepGoing) {
+            System.out.println("Would you like to:");
+            System.out.println("\t 1 -> Try again");
+            System.out.println("\t 2 -> Go back to the Main Menu");
+
+            command = input.next();
+
+            if (command.equals("1")) {
+                keepGoing = false;
+                if (method.equals("a")) {
+                    addCourse();
+                } else if (method.equals("r")) {
+                    removeCourse();
+                } else if (method.equals("v")) {
+                    viewCourses();
+                } else if (method.equals("c")) {
+                    searchCourse();
+                } else if (method.equals("u")) {
+                    searchStudent();
+                } else {
+                    System.err.println("This is very bad");
+                }
+            } else if (command.equals("2")) {
+                break;
+            } else {
+                System.out.println("Sorry - I didn't understand that. Try again!");
+            }
+        }
     }
 }

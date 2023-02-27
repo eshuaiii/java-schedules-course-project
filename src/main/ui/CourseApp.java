@@ -5,7 +5,6 @@ import model.course.AllCourses;
 import model.account.Student;
 import model.course.Course;
 
-import java.text.NumberFormat;
 import java.util.*;
 
 public class CourseApp {
@@ -29,7 +28,7 @@ public class CourseApp {
 
     // EFFECTS: shows the state before the user is logged in
     private void preLoggedInScreen() {
-        String command = null;
+        String command;
 
         while (keepGoingLogin) {
             System.out.println("\n\033[3m📍 Login Page\033[0m");
@@ -113,7 +112,7 @@ public class CourseApp {
 
     // EFFECTS: processes user command after sign up or log in fails
     private void failedSignUpLogIn(String method) {
-        Boolean keepGoing = true;
+        boolean keepGoing = true;
         while (keepGoing) {
             System.out.println("Would you like to:");
             System.out.println("\t 1 -> Try again");
@@ -139,7 +138,7 @@ public class CourseApp {
 
     // EFFECTS: produces the main menu after a user is logged in.
     private void mainMenu() {
-        String command = null;
+        String command;
 
         while (keepGoingMain) {
             System.out.println("\n\033[3m📍 Main Menu \033[0m");
@@ -232,7 +231,7 @@ public class CourseApp {
             System.out.println("\n📝 Please select the course you wish to remove:");
             viewCoursesInternal(courseList);
             try {
-                Integer command = input.nextInt();
+                int command = input.nextInt();
                 Course removedCourse = courseList.get(command - 1);
                 currentStudent.removeCourse(removedCourse);
                 this.courseList.checkForEmptyCourse(removedCourse);
@@ -264,7 +263,7 @@ public class CourseApp {
                                  + "or any other number to go back to the main menu.");
             viewCoursesInternal(courseList);
             try {
-                Integer command = input.nextInt();
+                int command = input.nextInt();
                 Course viewCourse = courseList.get(command - 1);
                 viewClassmates(viewCourse);
             } catch (IndexOutOfBoundsException e) {
@@ -304,7 +303,7 @@ public class CourseApp {
             System.out.println("Oops - the course number and section must be an integer!");
             failedMain("c");
         }
-
+        // TODO: weird double thing here too
         if (courseName.isEmpty() || courseNum.equals(-1) || courseSection.equals(-1)) {
             System.out.println("\n⚠️ Oops - no empty inputs please!");
             failedMain("c");
@@ -360,8 +359,7 @@ public class CourseApp {
     }
 
     private void displayCourses(List<Course> sharedCourses) {
-        for (int i = 0; i < sharedCourses.size(); i++) {
-            Course course = sharedCourses.get(i);
+        for (Course course : sharedCourses) {
             System.out.println("\t" + course.courseLong());
         }
     }
@@ -402,8 +400,8 @@ public class CourseApp {
     // TODO: move this method around so to avoid this warning
     @SuppressWarnings("methodlength")
     private void failedMain(String method) {
-        Boolean keepGoing = true;
-        String command = null;
+        boolean keepGoing = true;
+        String command;
         while (keepGoing) {
             System.out.println("Would you like to:");
             System.out.println("\t 1 -> Try again");

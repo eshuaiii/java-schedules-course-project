@@ -323,7 +323,6 @@ public class CourseApp {
 
     // EFFECTS: searches for a student's courses given inputs
     // TODO: refactor for loop to reduce method length
-    @SuppressWarnings("methodlength")
     private void searchStudent() {
         System.out.println("\n\033[3m📍 Main Menu -> Search for a Student\033[0m");
         System.out.println("📝 Please enter the student's username (case sensitive):");
@@ -339,10 +338,7 @@ public class CourseApp {
                 failedMain("u");
             } else {
                 System.out.println("Here are " + student.getFullName() + "'s courses:");
-                for (int i = 0; i < studentCourses.size(); i++) {
-                    Course course = studentCourses.get(i);
-                    System.out.println("\t" + course.courseLong());
-                }
+                displayCourses(studentCourses);
                 System.out.println("Type in \"y\" to see which courses you share, or anything else to return.");
                 String command = input.next();
                 if (command.equals("y")) {
@@ -357,12 +353,17 @@ public class CourseApp {
         System.out.println("\n\033[3m📍 Main Menu -> Search for a Student -> View Shared Courses\033[0m");
         System.out.println("Here are the courses you share:");
         List<Course> sharedCourses = student.getSharedCourses(this.currentStudent);
+        viewCoursesInternal(sharedCourses);
+        displayCourses(sharedCourses);
+        System.out.println("Press 'enter' to return to the main menu...");
+        input.next();
+    }
+
+    private void displayCourses(List<Course> sharedCourses) {
         for (int i = 0; i < sharedCourses.size(); i++) {
             Course course = sharedCourses.get(i);
             System.out.println("\t" + course.courseLong());
         }
-        System.out.println("Press 'enter' to return to the main menu...");
-        input.next();
     }
 
     //

@@ -321,7 +321,6 @@ public class CourseApp {
     }
 
     // EFFECTS: searches for a student's courses given inputs
-    // TODO: refactor for loop to reduce method length
     private void searchStudent() {
         System.out.println("\n\033[3m📍 Main Menu -> Search for a Student\033[0m");
         System.out.println("📝 Please enter the student's username (case sensitive):");
@@ -397,8 +396,6 @@ public class CourseApp {
     }
 
     // EFFECTS: processes user command after a fault in any main operations
-    // TODO: move this method around so to avoid this warning
-    @SuppressWarnings("methodlength")
     private void failedMain(String method) {
         boolean keepGoing = true;
         String command;
@@ -411,24 +408,28 @@ public class CourseApp {
 
             if (command.equals("1")) {
                 keepGoing = false;
-                if (method.equals("a")) {
-                    addCourse();
-                } else if (method.equals("r")) {
-                    removeCourse();
-                } else if (method.equals("v")) {
-                    viewCourses();
-                } else if (method.equals("c")) {
-                    searchCourse();
-                } else if (method.equals("u")) {
-                    searchStudent();
-                } else {
-                    System.err.println("This is very bad");
-                }
+                checkMainMethod(method);
             } else if (command.equals("2")) {
                 break;
             } else {
                 System.out.println("Sorry - I didn't understand that. Try again!");
             }
+        }
+    }
+
+    private void checkMainMethod(String method) {
+        if (method.equals("a")) {
+            addCourse();
+        } else if (method.equals("r")) {
+            removeCourse();
+        } else if (method.equals("v")) {
+            viewCourses();
+        } else if (method.equals("c")) {
+            searchCourse();
+        } else if (method.equals("u")) {
+            searchStudent();
+        } else {
+            System.err.println("This is very bad");
         }
     }
 }

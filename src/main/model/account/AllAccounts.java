@@ -2,6 +2,7 @@ package model.account;
 
 import java.util.HashMap;
 
+// Represents an object containing all user accounts in the applet session.
 public class AllAccounts {
     private HashMap<String, Account> accountList;
 

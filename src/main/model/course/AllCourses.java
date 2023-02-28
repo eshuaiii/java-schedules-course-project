@@ -2,6 +2,7 @@ package model.course;
 
 import java.util.HashMap;
 
+// Represents an object containing all courses in the applet session.
 public class AllCourses {
     HashMap<String, Course> courseList;
 

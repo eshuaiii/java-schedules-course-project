@@ -1,5 +1,6 @@
 package model.account;
 
+// Represents an account for a user, with their basic details, username, password, and a corresponding Student object.
 public class Account {
     private String username;
     private String firstName;

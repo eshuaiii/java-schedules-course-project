@@ -4,6 +4,7 @@ import model.account.Student;
 
 import java.util.*;
 
+// Represents a course with its shorthand name, its course number and section, and a list of the students in the course.
 public class Course {
     private String courseName;
     private Integer courseNum;

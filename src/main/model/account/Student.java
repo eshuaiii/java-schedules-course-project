@@ -4,6 +4,8 @@ import model.course.Course;
 
 import java.util.*;
 
+// Represents a Student profile, with a corresponding username to their Account, first and last name,
+// and their course list.
 public class Student {
     private String username;
     private String firstName;

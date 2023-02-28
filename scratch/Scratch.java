@@ -77,6 +77,11 @@
     - Check model.course - do I need to modify student again in course?
 
     --- FUTURE IDEAS ---
+    - Refactor "press enter to return" into one method
+    - Refactor viewCoursesInternal to viewCoursesInternalWithInput, then handle and return the user's input
+    - Refactor the check for empty fields as a method OR find a way to do so with exceptions?
+    - Change breadcrumbs?
+    - Add colours?
     - Make it possible for someone to search for everyone in a course, independent of section
     - Search by username AND name?
      */

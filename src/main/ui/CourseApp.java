@@ -7,6 +7,7 @@ import model.course.Course;
 
 import java.util.*;
 
+// Creates a new course app instance.
 public class CourseApp {
     AllAccounts accountList;
     AllCourses courseList;
@@ -189,8 +190,6 @@ public class CourseApp {
 
     // MODIFIES: this
     // EFFECTS: adds a course to the currentStudent.
-    // TODO: remove redundancy with this and searchCourse (have search method that returns a list of values?)
-
     private void addCourse() {
         System.out.println("\n\033[3m📍 Main Menu -> Add Course\033[0m");
         List<String> courseEntry = courseEntry();
@@ -206,6 +205,7 @@ public class CourseApp {
             failedMain("a");
         }
         // TODO: find a way to break after exception OR refactor this to run with try-catch above
+        // Consider checking for emptiness first, then attempt try-catch.
         if (courseName.isEmpty() || courseNum.equals(-1) || courseSection.equals(-1)) {
             System.out.println("\n⚠️ Oops - no empty inputs please!");
             failedMain("a");
@@ -243,6 +243,7 @@ public class CourseApp {
                 failedMain("r");
             } catch (InputMismatchException e) {
                 // TODO: weird issue about double printing?
+                // Try catching mismatch before OutOfBounds; or try casting command from str to int instead
                 System.out.println("Oops - your selection must be an integer!");
                 failedMain("r");
             }
@@ -259,6 +260,7 @@ public class CourseApp {
             System.out.println("Press 'enter' to return to the main menu...");
             input.next();
         } else {
+            // TODO: fix this "any number" part to be any input.
             System.out.println("\n📝 Here are your courses! Select a course to view your classmates, "
                                  + "or any other number to go back to the main menu.");
             viewCoursesInternal(courseList);
@@ -270,6 +272,7 @@ public class CourseApp {
                 System.out.println("Returning to the Main Menu.");
             } catch (InputMismatchException e) {
                 // TODO: weird issue about double printing? Might be because of nextInt?
+                // Try catching mismatch before OutOfBounds; or try casting command from str to int instead
                 System.out.println("Oops - your selection must be an integer!");
                 failedMain("v");
             }
@@ -288,6 +291,8 @@ public class CourseApp {
     }
 
     // EFFECTS: searches for a course given user inputs
+    // TODO: try to get rid of this methodlength warning by combining if/else and making it less efficient :D
+    //       declare first, then assign in if/else statement
     @SuppressWarnings("methodlength")
     private void searchCourse() {
         System.out.println("\n\033[3m📍 Main Menu -> Search for a Course\033[0m");
@@ -304,6 +309,7 @@ public class CourseApp {
             failedMain("c");
         }
         // TODO: weird double thing here too
+        // Consider checking for emptiness first, then attempt try-catch.
         if (courseName.isEmpty() || courseNum.equals(-1) || courseSection.equals(-1)) {
             System.out.println("\n⚠️ Oops - no empty inputs please!");
             failedMain("c");
@@ -351,19 +357,20 @@ public class CourseApp {
         System.out.println("\n\033[3m📍 Main Menu -> Search for a Student -> View Shared Courses\033[0m");
         System.out.println("Here are the courses you share:");
         List<Course> sharedCourses = student.getSharedCourses(this.currentStudent);
-        viewCoursesInternal(sharedCourses);
+        // viewCoursesInternal(sharedCourses);  uh oh; this should not be here.
         displayCourses(sharedCourses);
         System.out.println("Press 'enter' to return to the main menu...");
         input.next();
     }
 
+    // EFFECTS: displays the given courses without numbering.
     private void displayCourses(List<Course> sharedCourses) {
         for (Course course : sharedCourses) {
             System.out.println("\t" + course.courseLong());
         }
     }
 
-    //
+    // EFFECTS: signs the user out of the applet.
     private void signOut() {
         currentStudent = null;
         keepGoingMain = false;
@@ -417,6 +424,7 @@ public class CourseApp {
         }
     }
 
+    // EFFECTS: processes the user inputs to redirect the user correctly when the user makes an incorrect input.
     private void checkMainMethod(String method) {
         if (method.equals("a")) {
             addCourse();

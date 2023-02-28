@@ -27,6 +27,7 @@ public class CourseApp {
         preLoggedInScreen();
     }
 
+    // MODIFIES: this
     // EFFECTS: shows the state before the user is logged in
     private void preLoggedInScreen() {
         String command;
@@ -352,12 +353,11 @@ public class CourseApp {
         }
     }
 
-    // runs commands to search for courses shared with a student
+    // EFFECTS: returns courses shared with a given student
     private void searchSharedWithStudent(Student student) {
         System.out.println("\n\033[3m📍 Main Menu -> Search for a Student -> View Shared Courses\033[0m");
         System.out.println("Here are the courses you share:");
         List<Course> sharedCourses = student.getSharedCourses(this.currentStudent);
-        // viewCoursesInternal(sharedCourses);  uh oh; this should not be here.
         displayCourses(sharedCourses);
         System.out.println("Press 'enter' to return to the main menu...");
         input.next();
@@ -370,6 +370,7 @@ public class CourseApp {
         }
     }
 
+    // MODIFIES: this
     // EFFECTS: signs the user out of the applet.
     private void signOut() {
         currentStudent = null;

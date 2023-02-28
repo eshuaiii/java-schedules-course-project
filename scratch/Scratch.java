@@ -77,6 +77,7 @@
     - Check model.course - do I need to modify student again in course?
 
     --- FUTURE IDEAS ---
+    - Potentially not use integer? It'll remove formatting like 007, and cannot take in letters like 2C4.
     - Refactor "press enter to return" into one method
     - Refactor viewCoursesInternal to viewCoursesInternalWithInput, then handle and return the user's input
     - Refactor the check for empty fields as a method OR find a way to do so with exceptions?

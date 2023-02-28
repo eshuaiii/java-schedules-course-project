@@ -21,7 +21,7 @@ public class Student {
     }
 
     // REQUIRES: course is not already in courseList
-    // MODIFIES: this
+    // MODIFIES: this, course
     // EFFECTS: adds the course to the student's courseList, as well as the course's studentList.
     //          Returns true if successful.
     public void addCourse(Course course) {
@@ -30,7 +30,7 @@ public class Student {
     }
 
     // REQUIRES: course is in courseList
-    // MODIFIES: this
+    // MODIFIES: this, course
     // EFFECTS: removes the course from the student's courseList, as well as the course's studentList.
     //          Returns true if successful.
     public void removeCourse(Course course) {

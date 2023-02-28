@@ -19,7 +19,6 @@ public class Course {
         studentList = new HashSet<>();
     }
 
-    // REQUIRES: student is not already in studentList.
     // MODIFIES: this
     // EFFECTS: adds a student to the course's studentList.
     // TODO: Should I also modify student again here? Is public a bad idea?
@@ -27,7 +26,6 @@ public class Course {
         return studentList.add(student);
     }
 
-    // REQUIRES: student is in studentList.
     // MODIFIES: this
     // EFFECTS: removes a student from the course's studentList
     // TODO: Should I also modify student again here? Is public a bad idea?

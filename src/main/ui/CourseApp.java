@@ -189,7 +189,7 @@ public class CourseApp {
         }
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, currentStudent, course
     // EFFECTS: adds a course to the currentStudent.
     private void addCourse() {
         System.out.println("\n\033[3m📍 Main Menu -> Add Course\033[0m");
@@ -220,7 +220,7 @@ public class CourseApp {
         }
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, currentStudent, course
     // EFFECTS: removes a course from the currentStudent
     private void removeCourse() {
         List<Course> courseList = currentStudent.getCourses();

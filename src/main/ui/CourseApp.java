@@ -4,31 +4,38 @@ import model.account.AllAccounts;
 import model.course.AllCourses;
 import model.account.Student;
 import model.course.Course;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 
 // Creates a new course app instance.
 public class CourseApp {
+    private static final String JSON_STORE = "./data/session.json";
     AllAccounts accountList;
     AllCourses courseList;
     Scanner input;
     Student currentStudent;
     Boolean keepGoingLogin;
     Boolean keepGoingMain;
+    private JsonWriter jsonWriter;
 
     // EFFECTS: creates a new CourseApp and initializes fields + Scanner, then begins at preLoggedInScreen.
-    public CourseApp() {
+    public CourseApp() throws FileNotFoundException {
         keepGoingLogin = true;
         currentStudent = null;
         accountList = new AllAccounts();
         courseList = new AllCourses();
         input = new Scanner(System.in);
         input.useDelimiter("\n");
+        jsonWriter = new JsonWriter(JSON_STORE);
         preLoggedInScreen();
     }
 
     // MODIFIES: this
     // EFFECTS: shows the state before the user is logged in
+    @SuppressWarnings("methodlength")
     private void preLoggedInScreen() {
         String command;
 
@@ -37,6 +44,7 @@ public class CourseApp {
             System.out.println("Hi! 👋 Select from the following:");
             System.out.println("\tl -> Login");
             System.out.println("\ts -> Signup");
+            System.out.println("\tload -> Load a previous session");
             System.out.println("\tq -> Quit the applet");
             command = input.next();
             command = command.toLowerCase();
@@ -48,10 +56,25 @@ public class CourseApp {
             } else if (command.equals("q")) {
                 keepGoingLogin = false;
                 System.out.println("\nGoodbye! See you soon.");
+            } else if (command.equals("load")) {
+                loadSession();
+                System.out.println("\nGoodbye! See you soon.");
             } else {
                 System.out.println("\nSorry - I didn't understand that. Try again!");
             }
         }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads a previous session from JSON file
+    private void loadSession() {
+//        try {
+//            String jsonData = readFile(source);
+//            workRoom = jsonReader.read();
+//            System.out.println("Loaded " + workRoom.getName() + " from " + JSON_STORE);
+//        } catch (IOException e) {
+//            System.out.println("Unable to read from file: " + JSON_STORE);
+//        }
     }
 
     // MODIFIES: this
@@ -162,6 +185,7 @@ public class CourseApp {
         System.out.println("\t a -> Add a course to your account");
         System.out.println("\t r -> Remove a course from your account");
         System.out.println("\t s -> Sign out");
+        System.out.println("\t save -> Save this session to file.");
         System.out.println("\t q -> Quit the applet");
     }
 
@@ -180,6 +204,8 @@ public class CourseApp {
             removeCourse();
         } else if (command.equals("s")) {
             signOut();
+        } else if (command.equals("save")) {
+            saveSession();
         } else if (command.equals("q")) {
             System.out.println("Have a great day! See you soon. 👋");
             keepGoingMain = false;
@@ -367,6 +393,18 @@ public class CourseApp {
     private void displayCourses(List<Course> sharedCourses) {
         for (Course course : sharedCourses) {
             System.out.println("\t" + course.courseLong());
+        }
+    }
+
+    // EFFECTS: saves the session to file
+    private void saveSession() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(accountList, courseList);
+            jsonWriter.close();
+            System.out.println("✅ Saved the session to " +  JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("⚠️ Unable to write to file: " + JSON_STORE);
         }
     }
 

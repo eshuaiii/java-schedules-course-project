@@ -1,7 +1,11 @@
 package model.account;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents an account for a user, with their basic details, username, password, and a corresponding Student object.
-public class Account {
+public class Account implements Writable {
     private String username;
     private String firstName;
     private String lastName;
@@ -48,4 +52,16 @@ public class Account {
     public Student getStudent() {
         return student;
     }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("username", username);
+        json.put("firstName", firstName);
+        json.put("lastName", lastName);
+        json.put("password", password);
+        json.put("student", student); // fingers crossed this works...it's in the docs, so...
+        return json;
+    }
+
 }

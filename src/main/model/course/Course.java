@@ -1,11 +1,13 @@
 package model.course;
 
 import model.account.Student;
+import org.json.JSONObject;
+import persistence.Writable;
 
 import java.util.*;
 
 // Represents a course with its shorthand name, its course number and section, and a list of the students in the course.
-public class Course {
+public class Course implements Writable {
     private String courseName;
     private Integer courseNum;
     private Integer courseSection;
@@ -69,5 +71,16 @@ public class Course {
 
     public Collection<Student> getStudentList() {
         return studentList;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("courseName", courseName);
+        json.put("courseNum", courseNum);
+        json.put("courseSection", courseSection);
+        json.put("studentList", studentList); // fingers crossed this works...it's in the docs, so...
+
+        return json;
     }
 }

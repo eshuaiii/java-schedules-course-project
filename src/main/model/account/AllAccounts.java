@@ -1,10 +1,14 @@
 package model.account;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.HashMap;
+import java.util.Map;
 
 // Represents an object containing all user accounts in the applet session.
-public class AllAccounts {
-    private HashMap<String, Account> accountList;
+public class AllAccounts implements Writable {
+    private Map<String, Account> accountList;
 
     // EFFECTS: initializes AllAccounts with an empty list of accounts.
     public AllAccounts() {
@@ -46,7 +50,14 @@ public class AllAccounts {
         }
     }
 
-    public HashMap<String, Account> getAccountList() {
+    public Map<String, Account> getAccountList() {
         return accountList;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("accountList", accountList);
+        return json;
     }
 }

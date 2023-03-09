@@ -1,10 +1,14 @@
 package model.course;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.HashMap;
+import java.util.Map;
 
 // Represents an object containing all courses in the applet session.
-public class AllCourses {
-    HashMap<String, Course> courseList;
+public class AllCourses implements Writable {
+    private Map<String, Course> courseList;
 
     // EFFECTS: Initializes AllCourses with an empty HashSet
     public AllCourses() {
@@ -40,7 +44,14 @@ public class AllCourses {
         return courseList.get(courseName + "-" + courseNum + "-" + courseSection);
     }
 
-    public HashMap<String, Course> getCourseList() {
+    public Map<String, Course> getCourseList() {
         return courseList;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("courseList", courseList);
+        return json;
     }
 }

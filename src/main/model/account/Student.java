@@ -1,12 +1,14 @@
 package model.account;
 
 import model.course.Course;
+import org.json.JSONObject;
+import persistence.Writable;
 
 import java.util.*;
 
 // Represents a Student profile, with a corresponding username to their Account, first and last name,
 // and their course list.
-public class Student {
+public class Student implements Writable {
     private String username;
     private String firstName;
     private String lastName;
@@ -80,4 +82,14 @@ public class Student {
         return courseList;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("username", username);
+        json.put("firstName", firstName);
+        json.put("lastName", lastName);
+        json.put("courseList", courseList); // fingers crossed this works...it's in the docs, so...
+
+        return json;
+    }
 }

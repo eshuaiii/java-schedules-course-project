@@ -73,11 +73,11 @@
         - Do I need to import a library?
     - What kind of data type would work best for my data?
     - How should I represent the main ListOfCourses?
-    - If a function returns a new object, is that MODIFIES?
     - Check model.course - do I need to modify student again in course?
 
     --- FUTURE IDEAS ---
     - Potentially not use integer? It'll remove formatting like 007, and cannot take in letters like 2C4.
+        You'd need to check for alphanumeric, and no symbols like -s.
     - Refactor "press enter to return" into one method
     - Refactor viewCoursesInternal to viewCoursesInternalWithInput, then handle and return the user's input
     - Refactor the check for empty fields as a method OR find a way to do so with exceptions?

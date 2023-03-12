@@ -62,9 +62,9 @@ public class Account implements Writable {
         json.put("lastName", lastName);
         json.put("password", password);
 
-        JSONObject courseListJson = new JSONObject();
+        JSONArray courseListJson = new JSONArray();
         for (Course c : student.getCourseList().values()) {
-            courseListJson.put(c.courseToKey(), c.toJson());
+            courseListJson.put(c.toJson());
         }
 
         json.put("courseList", courseListJson); // fingers crossed this works...

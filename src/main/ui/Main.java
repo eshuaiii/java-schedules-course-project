@@ -2,6 +2,7 @@ package ui;
 
 import java.io.FileNotFoundException;
 
+// Starts the program by creating a new CourseApp.
 public class Main {
     public static void main(String[] args) {
         try {

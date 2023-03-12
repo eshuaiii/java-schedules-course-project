@@ -1,0 +1,31 @@
+{"accountList": [
+    {
+        "firstName": "eric",
+        "lastName": "s",
+        "password": "abc",
+        "courseList": [
+            {
+                "courseName": "CPSC",
+                "courseSection": 203,
+                "courseNum": 210
+            },
+            {
+                "courseName": "PSYC",
+                "courseSection": 6,
+                "courseNum": 101
+            }
+        ],
+        "username": "apple"
+    },
+    {
+        "firstName": "affef",
+        "lastName": "m",
+        "password": "bi",
+        "courseList": [{
+            "courseName": "CPSC",
+            "courseSection": 203,
+            "courseNum": 210
+        }],
+        "username": "afeef"
+    }
+]}

@@ -5,6 +5,7 @@ import model.course.AllCourses;
 import model.account.Student;
 import model.course.Course;
 import persistence.JsonWriter;
+import persistence.JsonReader;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -13,13 +14,14 @@ import java.util.*;
 // Creates a new course app instance.
 public class CourseApp {
     private static final String JSON_STORE = "./data/session.json";
-    AllAccounts accountList;
-    AllCourses courseList;
-    Scanner input;
-    Student currentStudent;
-    Boolean keepGoingLogin;
-    Boolean keepGoingMain;
+    private AllAccounts accountList;
+    private AllCourses courseList;
+    private Scanner input;
+    private Student currentStudent;
+    private Boolean keepGoingLogin;
+    private Boolean keepGoingMain;
     private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: creates a new CourseApp and initializes fields + Scanner, then begins at preLoggedInScreen.
     public CourseApp() throws FileNotFoundException {
@@ -30,6 +32,7 @@ public class CourseApp {
         input = new Scanner(System.in);
         input.useDelimiter("\n");
         jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         preLoggedInScreen();
     }
 
@@ -58,7 +61,6 @@ public class CourseApp {
                 System.out.println("\nGoodbye! See you soon.");
             } else if (command.equals("load")) {
                 loadSession();
-                System.out.println("\nGoodbye! See you soon.");
             } else {
                 System.out.println("\nSorry - I didn't understand that. Try again!");
             }
@@ -66,15 +68,19 @@ public class CourseApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: loads a previous session from JSON file
+    // EFFECTS: loads a previous session from JSON file.
+    // modelled based on the JsonSerializationDemo file,
+    //  https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     private void loadSession() {
-//        try {
-//            String jsonData = readFile(source);
-//            workRoom = jsonReader.read();
-//            System.out.println("Loaded " + workRoom.getName() + " from " + JSON_STORE);
-//        } catch (IOException e) {
-//            System.out.println("Unable to read from file: " + JSON_STORE);
-//        }
+        List<Object> jsonData;
+        try {
+            jsonData = jsonReader.read();
+            accountList = (AllAccounts) jsonData.get(0);
+            courseList = (AllCourses) jsonData.get(1);
+            System.out.println("✅ Successfully loaded the data from" + JSON_STORE + " !");
+        } catch (IOException e) {
+            System.out.println("⚠️ Unable to read from file: " + JSON_STORE);
+        }
     }
 
     // MODIFIES: this
@@ -397,6 +403,8 @@ public class CourseApp {
     }
 
     // EFFECTS: saves the session to file
+    // modelled based on the JsonSerializationDemo file,
+    //  https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     private void saveSession() {
         try {
             jsonWriter.open();

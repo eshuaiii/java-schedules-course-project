@@ -21,7 +21,7 @@ class AllAccountsTest {
 
     @Test
     void signupTest() {
-        // add a account
+        // add an account
         Student student1 = accountList.signup("abc", "Eric", "S", "abcdefg");
         Account account1 = accountList.getAccountList().get("abc");
         assertEquals("abc", account1.getUsername());

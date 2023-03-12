@@ -23,14 +23,14 @@ public class Course implements Writable {
 
     // MODIFIES: this
     // EFFECTS: adds a student to the course's studentList.
-    // TODO: Should I also modify student again here? Is public a bad idea?
+    // TODO: Modify student again here, and set check for MR in Student. Is public a bad idea?
     public Boolean addStudent(Student student) {
         return studentList.add(student);
     }
 
     // MODIFIES: this
     // EFFECTS: removes a student from the course's studentList
-    // TODO: Should I also modify student again here? Is public a bad idea?
+    // TODO: Modify student again here, and set check for MR in Student. Is public a bad idea?
     public Boolean removeStudent(Student student) {
         return studentList.remove(student);
     }
@@ -47,12 +47,12 @@ public class Course implements Writable {
         return studentArrayList;
     }
 
-    // EFFECTS: returns a concatenated string of the form <courseName>-<courseNum>-<courseSection>
+    // EFFECTS: returns a concatenated string of the form "<courseName>-<courseNum>-<courseSection>"
     public String courseToKey() {
         return this.getCourseName() + "-" + this.getCourseNum() + "-" + this.getCourseSection();
     }
 
-    // EFFECTS: returns a long string of the form <courseName> <courseNum>, Section <courseSection>
+    // EFFECTS: returns a long string of the form "<courseName> <courseNum>, Section <courseSection>"
     public String courseLong() {
         return this.getCourseName() + " " + this.getCourseNum() + ", Section " + this.getCourseSection();
     }
@@ -73,13 +73,13 @@ public class Course implements Writable {
         return studentList;
     }
 
+    // EFFECTS: returns Course as a JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("courseName", courseName);
         json.put("courseNum", courseNum);
         json.put("courseSection", courseSection);
-        // json.put("studentList", studentList); // to prevent the MR...
 
         return json;
     }

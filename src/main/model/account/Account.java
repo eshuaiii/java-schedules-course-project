@@ -54,6 +54,7 @@ public class Account implements Writable {
         return student;
     }
 
+    // EFFECTS: returns Account as a JSON object.
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -67,7 +68,7 @@ public class Account implements Writable {
             courseListJson.put(c.toJson());
         }
 
-        json.put("courseList", courseListJson); // fingers crossed this works...
+        json.put("courseList", courseListJson);
 
         return json;
     }

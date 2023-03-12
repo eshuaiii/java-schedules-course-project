@@ -1,31 +1,31 @@
 {"accountList": [
-    {
-        "firstName": "Eric",
-        "lastName": "S",
-        "password": "abc",
-        "courseList": [
-            {
-                "courseName": "CPSC",
-                "courseSection": 202,
-                "courseNum": 121
-            },
-            {
-                "courseName": "CPSC",
-                "courseSection": 203,
-                "courseNum": 210
-            }
-        ],
-        "username": "ericshuai"
-    },
-    {
-        "firstName": "Bob",
-        "lastName": "Joe",
-        "password": "BobJoe123",
-        "courseList": [{
-            "courseName": "CPSC",
-            "courseSection": 202,
-            "courseNum": 121
-        }],
-        "username": "bob123"
-    }
+  {
+    "firstName": "Eric",
+    "lastName": "S",
+    "password": "abc",
+    "courseList": [
+      {
+        "courseName": "BIOL",
+        "courseSection": 202,
+        "courseNum": 121
+      },
+      {
+        "courseName": "CPSC",
+        "courseSection": 203,
+        "courseNum": 210
+      }
+    ],
+    "username": "ericshuai"
+  },
+  {
+    "firstName": "Bob",
+    "lastName": "Joe",
+    "password": "BobJoe123",
+    "courseList": [{
+      "courseName": "BIOL",
+      "courseSection": 202,
+      "courseNum": 121
+    }],
+    "username": "bob123"
+  }
 ]}

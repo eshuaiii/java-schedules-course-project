@@ -14,21 +14,23 @@ import model.course.AllCourses;
 import model.course.Course;
 import org.json.*;
 
-// Represents a reader that reads workroom from JSON data stored in file
+// Represents a reader that reads AllAccounts and AllCourses from JSON data stored in file
 // modelled based on the JsonSerializationDemo file, https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 public class JsonReader {
     private String source;
     private AllAccounts accountList;
     private AllCourses courseList;
 
-    // EFFECTS: constructs reader to read from source file, as well as initializing the main fields
+    // EFFECTS: constructs a JSON reader to read from source file, as well as initializing the main fields
     public JsonReader(String source) {
         this.source = source;
         accountList = new AllAccounts();
         courseList = new AllCourses();
     }
 
-    // EFFECTS: reads workroom from file and returns it;
+    // MODIFIES: this
+    // EFFECTS: reads the accounts from file and parses it into AllAccounts and AllCourses.
+    // Then, assigns each to their respective objects, and returns a list of these objects.
     // throws IOException if an error occurs reading data from file
     public List<Object> read() throws IOException {
         String jsonData = readFile(source);
@@ -51,7 +53,7 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    // EFFECTS: parses workroom from JSON object and returns it
+    // EFFECTS: parses the Accounts list from JSON object, and begins operating on each.
     private void parseAccountList(JSONObject jsonObject) {
         JSONArray accountListArray = jsonObject.getJSONArray("accountList");
         for (Object json : accountListArray) {
@@ -60,8 +62,9 @@ public class JsonReader {
         }
     }
 
-    // MODIFIES: wr
-    // EFFECTS: parses thingy from JSON object and adds it to workroom
+    // MODIFIES: this
+    // EFFECTS: parses each Account from JSON object and adds it to accountList.
+    // Also begins operating on the courses in the Student object.
     private void addAccount(JSONObject jsonObject) {
         String firstName = jsonObject.getString("firstName");
         String lastName = jsonObject.getString("lastName");
@@ -77,8 +80,8 @@ public class JsonReader {
         }
     }
 
-    // MODIFIES: wr
-    // EFFECTS: parses thingy from JSON object and adds it to workroom
+    // MODIFIES: this
+    // EFFECTS: parses each Course from JSON object and adds it to courseList.
     private Course addCourse(JSONObject jsonObject) {
         String courseName = jsonObject.getString("courseName");
         Integer courseSection = jsonObject.getInt("courseSection");

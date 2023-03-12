@@ -11,13 +11,14 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// modelled based on the JsonSerializationDemo file, https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 class JsonReaderTest extends JsonTest {
 
     @Test
     void testReaderNonExistentFile() {
         JsonReader reader = new JsonReader("./data/noSuchFile.json");
         try {
-            List<Object> result = reader.read();
+            reader.read();
             fail("IOException expected");
         } catch (IOException e) {
             // pass
@@ -61,9 +62,9 @@ class JsonReaderTest extends JsonTest {
             Course courseCheck1 = ac.searchCourse("CPSC", 210, 203);
             assertNotNull(courseCheck1);
             checkCourse(courseCheck1, "CPSC", 210, 203);
-            Course courseCheck2 = ac.searchCourse("CPSC", 121, 202);
+            Course courseCheck2 = ac.searchCourse("BIOL", 121, 202);
             assertNotNull(courseCheck2);
-            checkCourse(courseCheck2, "CPSC", 121, 202);
+            checkCourse(courseCheck2, "BIOL", 121, 202);
 
             // Check that all Students have right courses
             assertTrue(accountCheck1.getStudent().getCourseList().containsValue(courseCheck1));

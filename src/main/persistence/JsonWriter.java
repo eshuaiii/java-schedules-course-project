@@ -1,15 +1,13 @@
 package persistence;
 
 import model.account.AllAccounts;
-import model.course.AllCourses;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 
 import java.io.*;
 
+// Represents a writer that writes JSON representation of the current program state to file
 // modelled based on the JsonSerializationDemo file, https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
-// Represents a writer that writes JSON representation of workroom to file
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;
@@ -21,14 +19,14 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: opens writer; throws FileNotFoundException if destination file cannot
-    // be opened for writing
+    // EFFECTS: opens writer; throws FileNotFoundException if destination file cannot be opened for writing
     public void open() throws FileNotFoundException {
         writer = new PrintWriter(new File(destination));
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON representation of workroom to file
+    // EFFECTS: writes JSON representation of AllAccounts to file
+    // Note: AllCourses is not part of the JSON generating as it would result in a mutual reference infinite loop.
     public void write(AllAccounts aa) {
         JSONObject json = aa.toJson();
         saveToFile(json.toString(TAB));

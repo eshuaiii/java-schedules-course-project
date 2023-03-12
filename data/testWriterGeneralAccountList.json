@@ -5,7 +5,7 @@
         "password": "abc",
         "courseList": [
             {
-                "courseName": "CPSC",
+                "courseName": "BIOL",
                 "courseSection": 202,
                 "courseNum": 121
             },
@@ -22,7 +22,7 @@
         "lastName": "Joe",
         "password": "BobJoe123",
         "courseList": [{
-            "courseName": "CPSC",
+            "courseName": "BIOL",
             "courseSection": 202,
             "courseNum": 121
         }],

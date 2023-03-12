@@ -1,7 +1,6 @@
 package persistence;
 
 import model.account.Account;
-import model.account.Student;
 import model.course.Course;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

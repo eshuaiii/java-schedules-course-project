@@ -1,8 +1,5 @@
 package model.course;
 
-import org.json.JSONObject;
-import persistence.Writable;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,7 +7,7 @@ import java.util.Map;
 public class AllCourses {
     private Map<String, Course> courseList;
 
-    // EFFECTS: Initializes AllCourses with an empty HashSet
+    // EFFECTS: Initializes AllCourses with an empty HashMap
     public AllCourses() {
         courseList = new HashMap<>();
     }
@@ -29,7 +26,7 @@ public class AllCourses {
     }
 
     // MODIFIES: this
-    // EFFECTS: checks if a course has an empty studentList: if so, remove the reference.
+    // EFFECTS: checks if a course has an empty studentList: if so, remove the reference to the course.
     public Boolean checkForEmptyCourse(Course course) {
         if (course.getStudentList().size() == 0) {
             courseList.remove(course.courseToKey());

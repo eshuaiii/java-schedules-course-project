@@ -6,6 +6,11 @@
         "courseList": [
             {
                 "courseName": "CPSC",
+                "courseSection": 202,
+                "courseNum": 121
+            },
+            {
+                "courseName": "CPSC",
                 "courseSection": 203,
                 "courseNum": 210
             },
@@ -18,14 +23,14 @@
         "username": "apple"
     },
     {
-        "firstName": "affef",
-        "lastName": "m",
-        "password": "bi",
+        "firstName": "Bob",
+        "lastName": "Joe",
+        "password": "bobjoe",
         "courseList": [{
             "courseName": "CPSC",
             "courseSection": 203,
             "courseNum": 210
         }],
-        "username": "afeef"
+        "username": "123"
     }
 ]}

@@ -16,8 +16,8 @@ public class AllAccounts implements Writable {
         accountList = new HashMap<>();
     }
 
-    // EFFECTS: goes through the entire list of accounts to see if one matches username: if so, calls method
-    //          to attempt sign in. Returns a Student if successful, null if not.
+    // EFFECTS: searches map for username key: if value is found, calls method to attempt sign in.
+    // Returns a Student if successful, null if not.
     public Student login(String username, String password) {
         // get method, then set as student and use Account.login
         Account wantedAccount = accountList.get(username);
@@ -55,6 +55,7 @@ public class AllAccounts implements Writable {
         return accountList;
     }
 
+    // EFFECTS: returns AllAccounts as a JSON object.
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -65,8 +66,6 @@ public class AllAccounts implements Writable {
         }
 
         json.put("accountList", jsonArray);
-
-        // json.put("accountList", accountList);
         return json;
     }
 }

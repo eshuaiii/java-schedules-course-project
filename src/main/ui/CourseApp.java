@@ -38,6 +38,7 @@ public class CourseApp {
 
     // MODIFIES: this
     // EFFECTS: shows the state before the user is logged in
+    // TODO: fix length by moving options or menu to own method
     @SuppressWarnings("methodlength")
     private void preLoggedInScreen() {
         String command;
@@ -141,7 +142,8 @@ public class CourseApp {
         }
     }
 
-    // EFFECTS: processes user command after sign up or log in fails
+    // MODIFIES: this
+    // EFFECTS: processes user command if sign up or log in fails
     private void failedSignUpLogIn(String method) {
         boolean keepGoing = true;
         while (keepGoing) {
@@ -449,6 +451,7 @@ public class CourseApp {
         return courseEntry;
     }
 
+    // MODIFIES: this
     // EFFECTS: processes user command after a fault in any main operations
     private void failedMain(String method) {
         boolean keepGoing = true;

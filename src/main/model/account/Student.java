@@ -1,8 +1,6 @@
 package model.account;
 
 import model.course.Course;
-import org.json.JSONObject;
-import persistence.Writable;
 
 import java.util.*;
 
@@ -22,10 +20,9 @@ public class Student {
         courseList = new HashMap<>();
     }
 
-    // REQUIRES: course is not already in courseList
     // MODIFIES: this, course
     // EFFECTS: adds the course to the student's courseList, as well as the course's studentList.
-    //          Returns true if successful.
+    // TODO: add guard for MR from Course
     public void addCourse(Course course) {
         courseList.put(course.courseToKey(), course);
         course.addStudent(this);
@@ -34,7 +31,7 @@ public class Student {
     // REQUIRES: course is in courseList
     // MODIFIES: this, course
     // EFFECTS: removes the course from the student's courseList, as well as the course's studentList.
-    //          Returns true if successful.
+    // TODO: add guard for MR from Course
     public void removeCourse(Course course) {
         courseList.remove(course.courseToKey());
         course.removeStudent(this);
@@ -56,7 +53,7 @@ public class Student {
         return sharedCourses; // TODO: check if empty, if so returns NoCourseSharedException
     }
 
-    // EFFECTS: returns <firstName> <lastName>
+    // EFFECTS: returns "<firstName> <lastName>"
     public String getFullName() {
         return firstName + " " + lastName;
     }

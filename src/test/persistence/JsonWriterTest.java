@@ -13,10 +13,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// modelled based on the JsonSerializationDemo file, https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 class JsonWriterTest extends JsonTest {
-    //NOTE TO CPSC 210 STUDENTS: the strategy in designing tests for the JsonWriter is to
-    //write data to a file and then use the reader to read it back in and check that we
-    //read in a copy of what was written out.
 
     AllAccounts aa;
     AllCourses ac;
@@ -64,7 +62,7 @@ class JsonWriterTest extends JsonTest {
             Student student2 = aa.signup("bob123", "Bob", "Joe", "BobJoe123");
 
             Course course1 = new Course("CPSC", 210, 203);
-            Course course2 = new Course("CPSC", 121, 202);
+            Course course2 = new Course("BIOL", 121, 202);
 
             student1.addCourse(course1);
             student1.addCourse(course2);
@@ -96,9 +94,9 @@ class JsonWriterTest extends JsonTest {
             Course courseCheck1 = ac.searchCourse("CPSC", 210, 203);
             assertNotNull(courseCheck1);
             checkCourse(courseCheck1, "CPSC", 210, 203);
-            Course courseCheck2 = ac.searchCourse("CPSC", 121, 202);
+            Course courseCheck2 = ac.searchCourse("BIOL", 121, 202);
             assertNotNull(courseCheck2);
-            checkCourse(courseCheck2, "CPSC", 121, 202);
+            checkCourse(courseCheck2, "BIOL", 121, 202);
 
             // Check that all Students have right courses
             assertTrue(accountCheck1.getStudent().getCourseList().containsValue(courseCheck1));

@@ -57,7 +57,11 @@ public class AllAccounts implements Writable {
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("accountList", accountList);
+
+        for (Account a : accountList.values()) {
+            json.put(a.getUsername(), a.toJson());
+        }
+        // json.put("accountList", accountList);
         return json;
     }
 }

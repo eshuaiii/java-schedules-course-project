@@ -400,7 +400,7 @@ public class CourseApp {
     private void saveSession() {
         try {
             jsonWriter.open();
-            jsonWriter.write(accountList, courseList);
+            jsonWriter.write(accountList);
             jsonWriter.close();
             System.out.println("✅ Saved the session to " +  JSON_STORE);
         } catch (FileNotFoundException e) {

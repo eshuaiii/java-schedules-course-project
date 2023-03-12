@@ -79,7 +79,7 @@ public class Course implements Writable {
         json.put("courseName", courseName);
         json.put("courseNum", courseNum);
         json.put("courseSection", courseSection);
-        json.put("studentList", studentList); // fingers crossed this works...it's in the docs, so...
+        // json.put("studentList", studentList); // to prevent the MR...
 
         return json;
     }

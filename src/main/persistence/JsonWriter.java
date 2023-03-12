@@ -1,4 +1,5 @@
 package persistence;
+
 import model.account.AllAccounts;
 import model.course.AllCourses;
 import org.json.JSONArray;
@@ -28,14 +29,8 @@ public class JsonWriter {
 
     // MODIFIES: this
     // EFFECTS: writes JSON representation of workroom to file
-    public void write(AllAccounts aa, AllCourses ac) {
-        JSONObject json = new JSONObject();
-        // TODO: You have a big issue here with your cyclic relationship. Try to refactor it so that the
-        //  allAccounts and allCourses only store the details (without students) of the values. You might need to do
-        //  some manual key/value pairings :sob:
-        json.put("allAccounts", aa.toJson());
-        json.put("allCourses", ac.toJson());
-
+    public void write(AllAccounts aa) {
+        JSONObject json = aa.toJson();
         saveToFile(json.toString(TAB));
     }
 

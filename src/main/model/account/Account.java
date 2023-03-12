@@ -1,5 +1,6 @@
 package model.account;
 
+import model.course.Course;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
@@ -60,7 +61,14 @@ public class Account implements Writable {
         json.put("firstName", firstName);
         json.put("lastName", lastName);
         json.put("password", password);
-        json.put("student", student); // fingers crossed this works...it's in the docs, so...
+
+        JSONObject courseListJson = new JSONObject();
+        for (Course c : student.getCourseList().values()) {
+            courseListJson.put(c.courseToKey(), c.toJson());
+        }
+
+        json.put("courseList", courseListJson); // fingers crossed this works...
+
         return json;
     }
 

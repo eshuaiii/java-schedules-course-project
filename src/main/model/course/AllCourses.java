@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 // Represents an object containing all courses in the applet session.
-public class AllCourses implements Writable {
+public class AllCourses {
     private Map<String, Course> courseList;
 
     // EFFECTS: Initializes AllCourses with an empty HashSet
@@ -46,12 +46,5 @@ public class AllCourses implements Writable {
 
     public Map<String, Course> getCourseList() {
         return courseList;
-    }
-
-    @Override
-    public JSONObject toJson() {
-        JSONObject json = new JSONObject();
-        json.put("courseList", courseList);
-        return json;
     }
 }

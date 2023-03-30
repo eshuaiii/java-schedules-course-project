@@ -33,6 +33,7 @@ public class CourseApp {
         input.useDelimiter("\n");
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
+
         preLoggedInScreen();
     }
 

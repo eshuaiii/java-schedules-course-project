@@ -1,7 +1,14 @@
 {"accountList": [
     {
         "firstName": "eric",
-        "lastName": "s",
+        "lastName": "shuai",
+        "password": "abc",
+        "courseList": [],
+        "username": "apple"
+    },
+    {
+        "firstName": "mep",
+        "lastName": "pe",
         "password": "abc",
         "courseList": [
             {
@@ -13,24 +20,8 @@
                 "courseName": "CPSC",
                 "courseSection": 203,
                 "courseNum": 210
-            },
-            {
-                "courseName": "PSYC",
-                "courseSection": 6,
-                "courseNum": 101
             }
         ],
-        "username": "apple"
-    },
-    {
-        "firstName": "Bob",
-        "lastName": "Joe",
-        "password": "bobjoe",
-        "courseList": [{
-            "courseName": "CPSC",
-            "courseSection": 203,
-            "courseNum": 210
-        }],
-        "username": "123"
+        "username": "maple"
     }
 ]}

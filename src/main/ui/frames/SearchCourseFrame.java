@@ -5,23 +5,23 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AddCourseFrame extends FrameTemplate implements ActionListener {
+public class SearchCourseFrame extends FrameTemplate implements ActionListener {
 
     JTextField courseNameField;
     JTextField courseNumField;
     JTextField courseSectionField;
-    JButton addCourseButton;
+    JButton searchCourseField;
     JButton cancelButton;
 
-    public AddCourseFrame() {
-        super("Add a Course");
+    public SearchCourseFrame() {
+        super("Search for a Course");
         JPanel panel = new JPanel();
         panel.setBackground(new Color(0xfafafa));
         panel.setLayout(new GridLayout(9, 1, 10, 10));
         this.add(panel);
 
         JLabel title = new JLabel();
-        title.setText("Add a new course:");
+        title.setText("Search for a course:");
         title.setVerticalAlignment(JLabel.CENTER);
         title.setHorizontalAlignment(JLabel.CENTER);
 
@@ -44,8 +44,8 @@ public class AddCourseFrame extends FrameTemplate implements ActionListener {
         courseSectionField.setVerticalAlignment(JLabel.CENTER);
         courseSectionField.setHorizontalAlignment(JLabel.CENTER);
 
-        addCourseButton = new JButton("Add Course");
-        addCourseButton.addActionListener(this);
+        searchCourseField = new JButton("Search Course");
+        searchCourseField.addActionListener(this);
 
         cancelButton = new JButton("Go Back Home");
         cancelButton.addActionListener(this);
@@ -58,7 +58,7 @@ public class AddCourseFrame extends FrameTemplate implements ActionListener {
         panel.add(this.courseNumField);
         panel.add(courseSectionField);
         panel.add(this.courseSectionField);
-        panel.add(addCourseButton);
+        panel.add(searchCourseField);
         panel.add(cancelButton);
 
         this.setVisible(true);
@@ -66,9 +66,9 @@ public class AddCourseFrame extends FrameTemplate implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == addCourseButton) {
-            System.out.println("New Course Added!");
-            new HomeFrame();
+        if (e.getSource() == searchCourseField) {
+            System.out.println("Trying to search for the course!");
+            new SearchResultsFrame("course");
             this.dispose();
         } else if (e.getSource() == cancelButton) {
             System.out.println("Cancelled!");

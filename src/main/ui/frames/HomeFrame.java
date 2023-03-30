@@ -83,7 +83,7 @@ public class HomeFrame extends FrameTemplate implements ActionListener, ListSele
         JLabel placeholder2 = new JLabel();
         placeholder2.setText("Your classmates:");
         searchCourseButton = new JButton("Search for a course");
-        searchStudentButton = new JButton("Remove a course");
+        searchStudentButton = new JButton("Search for a student");
         searchCourseButton.addActionListener(this);
         searchStudentButton.addActionListener(this);
 
@@ -112,10 +112,29 @@ public class HomeFrame extends FrameTemplate implements ActionListener, ListSele
             this.dispose();
         } else if (e.getSource() == removeCourseButton) {
             System.out.println("You really sure you want to remove that?");
+            Object[] options = {"Remove course", "Cancel"};
+            int n = JOptionPane.showOptionDialog(this,
+                    "You selected: a course. Would you like to remove it?",
+                    "Remove a Course",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    options,
+                    options[0]);
+            if (n == JOptionPane.YES_OPTION) {
+                System.out.println("Course removed!");
+            } else if (n == JOptionPane.NO_OPTION) {
+                System.out.println("No removing today!");
+            }
+
         } else if (e.getSource() == searchCourseButton) {
             System.out.println("Let's search for that course!");
+            new SearchCourseFrame();
+            this.dispose();
         } else if (e.getSource() == searchStudentButton) {
             System.out.println("Finding a student!");
+            new SearchStudentFrame();
+            this.dispose();
         } else if (e.getSource() == saveButton) {
             System.out.println("Data Saved!");
         }

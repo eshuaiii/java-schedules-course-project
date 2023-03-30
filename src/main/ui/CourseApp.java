@@ -1,15 +1,18 @@
 package ui;
 
 import model.account.AllAccounts;
-import model.course.AllCourses;
 import model.account.Student;
+import model.course.AllCourses;
 import model.course.Course;
-import persistence.JsonWriter;
 import persistence.JsonReader;
+import persistence.JsonWriter;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Scanner;
 
 // Creates a new course app instance.
 public class CourseApp {

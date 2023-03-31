@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -107,9 +108,20 @@ public class CourseTest {
         resultList.add("Hey Boy");
         assertEquals(resultList, course1.getStudentListSorted());
     }
-    /*
-getstudentlistsorted: add a bunch of students, check for sort. Check same first name, first/last, a bit off, empty list
- */
+
+    @Test
+    void getStudentNamesGUITest() {
+        Map<String, String> result = course1.getStudentNamesGUI();
+        assertEquals(0, result.size());
+
+        course1.addStudent(student4);
+        course1.addStudent(student1);
+        result = course1.getStudentNamesGUI();
+        assertEquals(2, result.size());
+        assertEquals(student4.getUsername(), result.get(student4.getFullName()));
+        assertEquals(student1.getUsername(), result.get(student1.getFullName()));
+
+    }
 
     @Test
     void courseToKeyTest() {

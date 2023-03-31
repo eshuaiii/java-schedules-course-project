@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -174,5 +175,37 @@ class StudentTest {
 
         assertEquals(1, courseList3.size());
         assertTrue(courseList3.contains(course2));
+    }
+
+    @Test
+    void getCourseNamesGUITest() {
+        Map<String, String> result = student1.getCourseNamesGUI();
+        assertEquals(0, result.size());
+
+        // First add all required courses:
+        student1.addCourse(course1);
+        student1.addCourse(course2);
+        result = student1.getCourseNamesGUI();
+
+        // Check for existence:
+        assertEquals(2, result.size());
+        assertEquals(course1.courseToKey(), result.get(course1.courseLong()));
+        assertEquals(course2.courseToKey(), result.get(course2.courseLong()));
+    }
+
+    @Test
+    void getSharedCoursesGUI() {
+        // First add all required courses:
+        student1.addCourse(course1);
+        student1.addCourse(course2);
+        // Try one with no shared courses:
+        Map<String, String> result = student1.getSharedCoursesGUI(student2);
+        assertNull(result);
+
+        // add a course
+        student2.addCourse(course1);
+        result = student1.getSharedCoursesGUI(student2);
+        assertEquals(1, result.size());
+        assertEquals(course1.courseToKey(), result.get(course1.courseLong()));
     }
 }

@@ -12,6 +12,7 @@ public class PreLoginFrame extends FrameTemplate implements ActionListener {
     JButton loginButton;
     JButton signUpButton;
     JButton loadButton;
+    ImageIcon calendar;
 
     // EFFECTS: creates an instance of a PreLoginFrame with necessary GUI elements
     public PreLoginFrame(CourseAppGUI c) {
@@ -19,7 +20,7 @@ public class PreLoginFrame extends FrameTemplate implements ActionListener {
         this.setLayout(new GridLayout(4, 1, 10, 10));
 
         JLabel title = new JLabel();
-        title.setText("Hi!");
+        title.setText("Hi! Welcome to Schedules");
         title.setVerticalAlignment(JLabel.CENTER);
         title.setHorizontalAlignment(JLabel.CENTER);
         loginButton = new JButton("Log In");
@@ -29,6 +30,12 @@ public class PreLoginFrame extends FrameTemplate implements ActionListener {
 
         loadButton = new JButton("Load from File");
         loadButton.addActionListener(this);
+
+        // Reference: https://stackoverflow.com/questions/6714045/how-to-resize-jlabel-imageicon
+        calendar = new ImageIcon(new ImageIcon("data/calendar.png").getImage()
+                .getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+
+        title.setIcon(calendar);
 
         this.add(title);
         this.add(loginButton);

@@ -1,20 +1,42 @@
 {"accountList": [
     {
-        "firstName": "eric",
-        "lastName": "shuai",
-        "password": "abc",
-        "courseList": [{
-            "courseName": "CPSC",
-            "courseSection": 202,
-            "courseNum": 121
-        }],
-        "username": "apple"
+        "firstName": "Bob",
+        "lastName": "Ton",
+        "password": "bob",
+        "courseList": [
+            {
+                "courseName": "BIOL",
+                "courseSection": 102,
+                "courseNum": 498
+            },
+            {
+                "courseName": "CPSC",
+                "courseSection": 203,
+                "courseNum": 210
+            },
+            {
+                "courseName": "CPSC",
+                "courseSection": 202,
+                "courseNum": 500
+            },
+            {
+                "courseName": "MATH",
+                "courseSection": 219,
+                "courseNum": 440
+            }
+        ],
+        "username": "bob"
     },
     {
-        "firstName": "mep",
-        "lastName": "pe",
-        "password": "abc",
+        "firstName": "Eric",
+        "lastName": "Shuai",
+        "password": "eric",
         "courseList": [
+            {
+                "courseName": "MATH",
+                "courseSection": 201,
+                "courseNum": 200
+            },
             {
                 "courseName": "CPSC",
                 "courseSection": 202,
@@ -24,8 +46,41 @@
                 "courseName": "CPSC",
                 "courseSection": 203,
                 "courseNum": 210
+            },
+            {
+                "courseName": "PSYC",
+                "courseSection": 107,
+                "courseNum": 101
             }
         ],
-        "username": "maple"
+        "username": "eric"
+    },
+    {
+        "firstName": "Jerry",
+        "lastName": "A",
+        "password": "jerry",
+        "courseList": [
+            {
+                "courseName": "PHIL",
+                "courseSection": 203,
+                "courseNum": 220
+            },
+            {
+                "courseName": "CPSC",
+                "courseSection": 202,
+                "courseNum": 121
+            },
+            {
+                "courseName": "APSC",
+                "courseSection": 100,
+                "courseNum": 101
+            },
+            {
+                "courseName": "CPSC",
+                "courseSection": 203,
+                "courseNum": 210
+            }
+        ],
+        "username": "jerry"
     }
 ]}

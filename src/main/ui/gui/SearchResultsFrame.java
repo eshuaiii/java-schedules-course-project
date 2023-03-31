@@ -104,10 +104,19 @@ public class SearchResultsFrame extends FrameTemplate implements ActionListener 
         // placeholder random stuff
         List<String> sortedList = new ArrayList<>(result.keySet());
         Collections.sort(sortedList);
-        resultList.addAll(sortedList);
+        addAllToList(resultList, sortedList);
+        // resultList.addAll(sortedList); <- Java 11
         //Create the list and put it in a scroll pane.
         resultJList = new JList(resultList);
         resultJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: a workaround to .addAll method since Java 8/11 issue...
+    private void addAllToList(DefaultListModel dlm, List<String> list) {
+        for (String s : list) {
+            dlm.addElement(s);
+        }
     }
 
     // MODIFIES: this

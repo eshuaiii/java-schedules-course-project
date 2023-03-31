@@ -70,7 +70,8 @@ public class HomeFrame extends FrameTemplate implements ActionListener, ListSele
         courseList = new DefaultListModel();
         List<String> studentCourses = new ArrayList<>(courseApp.currentStudent.getCourseNamesGUI().keySet());
         Collections.sort(studentCourses);
-        courseList.addAll(studentCourses);
+        addAllToList(courseList, studentCourses);
+        // courseList.addAll(studentCourses); <- Java 11
         //Create the list and put it in a scroll pane.
         courseJList = new JList(courseList);
         courseJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -131,6 +132,15 @@ public class HomeFrame extends FrameTemplate implements ActionListener, ListSele
         panelCenter.add(panelLeft);
         panelCenter.add(panelRight);
     }
+
+    // MODIFIES: this
+    // EFFECTS: a workaround to .addAll method since Java 8/11 issue...
+    private void addAllToList(DefaultListModel dlm, List<String> list) {
+        for (String s : list) {
+            dlm.addElement(s);
+        }
+    }
+
 
     // MODIFIES: this, courseApp
     // EFFECTS: listens to events from buttons
@@ -193,7 +203,8 @@ public class HomeFrame extends FrameTemplate implements ActionListener, ListSele
                     Course course = courseApp.courseList.getCourseList().get(courseKey);
                     List<String> courseStudents = course.getStudentListSorted();
                     studentList.removeAllElements();
-                    studentList.addAll(courseStudents);
+                    addAllToList(studentList, courseStudents);
+                    // studentList.addAll(courseStudents); <- Java 11
                 }
                 System.out.println(courseJList.getSelectedValue());
             }

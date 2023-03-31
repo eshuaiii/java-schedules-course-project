@@ -47,6 +47,17 @@ public class Course implements Writable {
         return studentArrayList;
     }
 
+    // EFFECTS: returns a map of the full course names and their respective keys from courseList.
+    public Map<String, String> getStudentNamesGUI() {
+        Map<String, String> studentMap = new HashMap<>();
+
+        for (Student s : this.getStudentList()) {
+            studentMap.put(s.getFullName(), s.getUsername());
+        }
+
+        return studentMap;
+    }
+
     // EFFECTS: returns a concatenated string of the form "<courseName>-<courseNum>-<courseSection>"
     public String courseToKey() {
         return this.getCourseName() + "-" + this.getCourseNum() + "-" + this.getCourseSection();

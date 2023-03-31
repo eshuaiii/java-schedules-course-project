@@ -58,6 +58,38 @@ public class Student {
         return firstName + " " + lastName;
     }
 
+    // EFFECTS: returns a map of the full course names and their respective keys from courseList.
+    public Map<String, String> getCourseNamesGUI() {
+        Map<String, String> courseMap = new HashMap<>();
+
+        for (Course c : this.getCourses()) {
+            courseMap.put(c.courseLong(), c.courseToKey());
+        }
+
+
+        return courseMap;
+    }
+
+    // EFFECTS: given the student, return a list of courses that this student shares with the given student.
+    public Map<String, String> getSharedCoursesGUI(Student s2) {
+        HashMap<String, Course> s2Courses = s2.getCourseList();
+        Map<String, String> sharedCourses = new HashMap<>();
+
+        for (Course c : this.getCourses()) {
+            Course hasCourse = s2Courses.get(c.courseToKey());
+
+            if (hasCourse != null) {
+                sharedCourses.put(hasCourse.courseLong(), hasCourse.courseToKey());
+            }
+        }
+
+        if (sharedCourses.size() == 0) {
+            return null;
+        } else {
+            return sharedCourses; // TODO: check if empty, if so returns NoCourseSharedException
+        }
+    }
+
     // EFFECTS: returns the courses from courseList, as opposed to the entire HashMap.
     public List<Course> getCourses() {
         return new ArrayList<>(courseList.values());

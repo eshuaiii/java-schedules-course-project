@@ -1,6 +1,6 @@
 package ui;
 
-import ui.frames.PreLoginFrame;
+import ui.gui.CourseAppGUI;
 
 import java.io.FileNotFoundException;
 

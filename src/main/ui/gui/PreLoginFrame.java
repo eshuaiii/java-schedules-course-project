@@ -1,22 +1,22 @@
-package ui.frames;
+package ui.gui;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
+// Creates an instance of the frame with the GUI before logging in.
 public class PreLoginFrame extends FrameTemplate implements ActionListener {
 
     JButton loginButton;
     JButton signUpButton;
     JButton loadButton;
 
-    public PreLoginFrame() {
-        super("Welcome!");
-        JPanel panel = new JPanel();
-        panel.setBackground(new Color(0xfafafa));
-        panel.setLayout(new GridLayout(4, 1, 10, 10));
-        this.add(panel);
+    // EFFECTS: creates an instance of a PreLoginFrame with necessary GUI elements
+    public PreLoginFrame(CourseAppGUI c) {
+        super("Welcome!", c);
+        this.setLayout(new GridLayout(4, 1, 10, 10));
 
         JLabel title = new JLabel();
         title.setText("Hi!");
@@ -27,31 +27,38 @@ public class PreLoginFrame extends FrameTemplate implements ActionListener {
         signUpButton = new JButton("Sign Up");
         signUpButton.addActionListener(this);
 
-        // temporary button to load from file -> menu item?
         loadButton = new JButton("Load from File");
         loadButton.addActionListener(this);
 
-        // first go grid then go elements?
-        panel.add(title);
-        panel.add(loginButton);
-        panel.add(signUpButton);
-        panel.add(loadButton);
+        this.add(title);
+        this.add(loginButton);
+        this.add(signUpButton);
+        this.add(loadButton);
 
         this.setVisible(true);
     }
 
+    // MODIFIES: this
+    // EFFECTS: listens to events from buttons.
+    //          If loginButton is pressed, opens LoginFrame
+    //          If signUpButton is pressed, opens SignUpFrame
+    //          If loadButton is pressed, attempts to load data from a previous session.
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == loginButton) {
             System.out.println("Opening Login!");
-            new LoginFrame();
+            new LoginFrame(courseApp);
             this.dispose();
         } else if (e.getSource() == signUpButton) {
             System.out.println("Opening Signup!");
-            new SignupFrame();
+            new SignupFrame(courseApp);
             this.dispose();
         } else if (e.getSource() == loadButton) {
             System.out.println("Loading Data!");
+            courseApp.loadSession();
+            JOptionPane.showMessageDialog(this,
+                    "Data Loaded!",
+                    "Load Session", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 }

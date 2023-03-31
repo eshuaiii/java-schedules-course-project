@@ -3,7 +3,11 @@
         "firstName": "eric",
         "lastName": "shuai",
         "password": "abc",
-        "courseList": [],
+        "courseList": [{
+            "courseName": "CPSC",
+            "courseSection": 202,
+            "courseNum": 121
+        }],
         "username": "apple"
     },
     {

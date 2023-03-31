@@ -71,4 +71,20 @@ to reach out and study with faster.
 - As a user, I want to be able to search for a course and see who is in that course.
 - As a user, I want to be able to search for a user and see which courses I share with them.
 - As a user, I want to be able to save the current user accounts and students to file when I choose to.
-- As a user, I want to be able to reload the program state from a file when I choose to. 
+- As a user, I want to be able to reload the program state from a file when I choose to.
+
+## 🛝 Instructions for Grader
+Sorry for the ugliness! I will try to make it look nicer in Phase 4.
+For reference, these three user accounts can be accessed with some pre-filled information. Feel free to modify at your liking!
+
+- Username: eric, Password: eric
+- Username: bob, Password: bob
+- Username: jerry, Password: jerry
+
+
+
+- You can generate the first required action related to adding Xs to a Y by removing a course from any user
+- You can generate the second required action related to adding Xs to a Y by adding a course to a user
+- You can locate my visual component at the splash screen
+- You can save the state of my application by logging into any account and choosing "Save"
+- You can reload the state of my application before logging in by pressing "Load"

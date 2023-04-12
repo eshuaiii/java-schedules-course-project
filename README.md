@@ -1,7 +1,5 @@
 <h1 align="center"> 📅 ️A small schedule-sharing tool</h1>
 
-*(a temporary name until I can find a better one :D)*
-
 ---
 
 ## 🌱 Introduction
@@ -104,3 +102,13 @@ For reference, these three user accounts can be accessed with some pre-filled in
 | Removing a course from an account (with more students)                     | Tue Apr 11 17:30:07 PDT 2023<br/>✅ Student eric removed from CPSC 121, Section 202<br/>Tue Apr 11 17:30:07 PDT 2023<br/>✅ Course: CPSC 121, Section 202 removed from eric                                                                                                      |
 | Adding a course to an account (that exists in the all courses list)        | Tue Apr 11 17:30:12 PDT 2023<br/>ℹ️ Course: CPSC 121, Section 202 exists in courseList.<br/>Tue Apr 11 17:30:12 PDT 2023<br/>✅ Student eric added to CPSC 121, Section 202<br/>Tue Apr 11 17:30:12 PDT 2023<br/>✅ Course: CPSC 121, Section 202 added to eric                  |
 | Saving data to file                                                        | Tue Apr 11 16:23:55 PDT 2023<br/>📜 Saved the session to ./data/session.json                                                                                                                                                                                                   |
+
+## 🪴 Phase 4, Task 3
+
+Although I'm happy with how this project is as it stands today, there are a lot of refactoring that I hope I can do in the future:
+
+- **Adding Exceptions:** Instead of using `if/else` blocks and returning different values depending on the situation, I want to refactor the code to implement Exceptions for anything that shouldn't happen. This way, we clearly separate the control and error flows and can handle each error case better.
+- **Refactoring `CourseApp` and `CourseAppGUI`:** These two classes are almost identical to each other, to the point that I had to group them together on the UML diagram. Having an abstract class that implements most of the methods shared by both, and overriding unique points of variance between the console and GUI-based programs would be great.
+- **Using the Singleton Method for `CourseAppGUI`:** Although I'm happy that I separated each frame into its own class, it brings up the challenge that now, I have to pass in the CourseAppGUI object into each of the frames that I use. There's a lot of redundancy, and I might be able to fix this by creating CourseAppGUI as a Singleton class; that way, all classes can simply grab and update the required fields (as there is only one GUI instance).
+
+Thank you so much!

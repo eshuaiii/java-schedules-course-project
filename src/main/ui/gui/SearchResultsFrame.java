@@ -121,19 +121,19 @@ public class SearchResultsFrame extends FrameTemplate implements ActionListener 
     // EFFECTS: changes button and title labels depending on operation
     private void operationCheck(String op) {
         if (op.equals("student")) {
-            title.setText("These are the courses " + student.getFirstName() + " has.\n"
-                    + "View shared courses by pressing the \"view shared courses\" button.\n"
+            title.setText("<html>These are the courses " + student.getFirstName() + " has.<br>"
+                    + "View shared courses by pressing the \"view shared courses\" button.<br>"
                     + "Or, view a course's students by pressing the \"view students\" button.");
             searchCourseStudentButton.setText("View Students");
             sharedCoursesButton = new JButton("View Shared Courses");
             sharedCoursesButton.addActionListener(this);
             this.add(sharedCoursesButton);
         } else if (op.equals("course")) {
-            title.setText("These are the students in this course.\n"
+            title.setText("<html>These are the students in this course.<br>"
                     + "View a student's courses by pressing the \"view courses\" button.");
             searchCourseStudentButton.setText("View Courses");
         } else if (op.equals("shared")) {
-            title.setText("These are the courses you share with " + student.getFirstName() + ".\n"
+            title.setText("<html>These are the courses you share with " + student.getFirstName() + ".<br>"
                     + "View a course's students by pressing the \"view students\" button.");
             searchCourseStudentButton.setText("View Students");
         }
@@ -171,7 +171,7 @@ public class SearchResultsFrame extends FrameTemplate implements ActionListener 
             Map<String, String> sharedCourses = courseApp.currentStudent.getSharedCoursesGUI(student);
             if (sharedCourses == null) {
                 JOptionPane.showMessageDialog(this, "You don't share any courses with " + student.getFirstName(),
-                        "Student not found", JOptionPane.WARNING_MESSAGE);
+                        "No shared courses", JOptionPane.WARNING_MESSAGE);
             } else {
                 new SearchResultsFrame("shared", sharedCourses, student, courseApp);
                 this.dispose();

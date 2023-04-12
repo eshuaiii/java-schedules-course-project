@@ -39,6 +39,8 @@ public class EventTest {
 
     @Test
     public void testEquals() {
+        assertFalse(e.equals(d));
+        assertFalse(e.equals(null));
         assertFalse(e.equals(new Event("User")));
         assertTrue(e.equals(e));
         assertTrue(new Event("test").equals(new Event("test")));

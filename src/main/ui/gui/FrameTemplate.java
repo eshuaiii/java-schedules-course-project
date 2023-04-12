@@ -5,8 +5,6 @@ import model.EventLog;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 
 // A template with primary components of every frame of the GUI.
 public class FrameTemplate extends JFrame {

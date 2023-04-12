@@ -84,8 +84,8 @@ public class CourseAppGUI {
     // MODIFIES: this, currentStudent, course
     // EFFECTS: adds a course to the currentStudent.
     protected Course addCourse(String courseName, String courseNum, String courseSection) {
-        int courseNumInt = -1;
-        int courseSectionInt = -1;
+        int courseNumInt;
+        int courseSectionInt;
         try {
             courseNumInt = Integer.parseInt(courseNum);
             courseSectionInt = Integer.parseInt(courseSection);
@@ -117,8 +117,7 @@ public class CourseAppGUI {
 //            System.out.println("Oops - the course number and section must be an integer!");
         }
 
-        Course course = courseList.searchCourse(courseName, courseNumInt, courseSectionInt);
-        return course;
+        return courseList.searchCourse(courseName, courseNumInt, courseSectionInt);
     }
 
     // EFFECTS: saves the session to file

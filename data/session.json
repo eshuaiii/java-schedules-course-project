@@ -5,6 +5,11 @@
         "password": "bob",
         "courseList": [
             {
+                "courseName": "ASFF",
+                "courseSection": 123,
+                "courseNum": 123
+            },
+            {
                 "courseName": "BIOL",
                 "courseSection": 102,
                 "courseNum": 498
@@ -18,11 +23,6 @@
                 "courseName": "CPSC",
                 "courseSection": 202,
                 "courseNum": 500
-            },
-            {
-                "courseName": "MATH",
-                "courseSection": 219,
-                "courseNum": 440
             }
         ],
         "username": "bob"

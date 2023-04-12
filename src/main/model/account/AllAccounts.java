@@ -1,5 +1,7 @@
 package model.account;
 
+import model.Event;
+import model.EventLog;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
@@ -24,6 +26,7 @@ public class AllAccounts implements Writable {
         if (wantedAccount != null) {
             return wantedAccount.login(password); // TODO: might also throw IncorrectPasswordException
         } else {
+            EventLog.getInstance().logEvent(new Event("⚠️ Account " + username + " was not found."));
             return null; // TODO: throw AccountNotFoundException
         }
     }
@@ -36,6 +39,7 @@ public class AllAccounts implements Writable {
         }
         Account newAccount = new Account(username, firstName, lastName, password);
         accountList.put(username, newAccount);
+        EventLog.getInstance().logEvent(new Event("✅ Signup for " + username + " was successful."));
         return newAccount.getStudent();
     }
 

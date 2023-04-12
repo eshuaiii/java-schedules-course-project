@@ -1,5 +1,7 @@
 package model.account;
 
+import model.Event;
+import model.EventLog;
 import model.course.Course;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -27,8 +29,10 @@ public class Account implements Writable {
     // EFFECTS: checks if the password matches the account.
     public Student login(String pw) {
         if (this.password.equals(pw)) {
+            EventLog.getInstance().logEvent(new Event("✅ " + this.username + " has logged in."));
             return this.student; // stub
         } else {
+            EventLog.getInstance().logEvent(new Event("⚠️ Incorrect password for: " + this.username));
             return null; // TODO: throw IncorrectPasswordException
         }
     }

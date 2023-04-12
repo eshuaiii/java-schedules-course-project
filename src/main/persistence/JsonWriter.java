@@ -1,5 +1,7 @@
 package persistence;
 
+import model.Event;
+import model.EventLog;
 import model.account.AllAccounts;
 import org.json.JSONObject;
 
@@ -30,6 +32,7 @@ public class JsonWriter {
     public void write(AllAccounts aa) {
         JSONObject json = aa.toJson();
         saveToFile(json.toString(TAB));
+        EventLog.getInstance().logEvent(new Event("📜 Saved the session to " + destination));
     }
 
     // MODIFIES: this

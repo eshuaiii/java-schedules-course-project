@@ -1,5 +1,7 @@
 package model.account;
 
+import model.Event;
+import model.EventLog;
 import model.course.Course;
 
 import java.util.*;
@@ -26,6 +28,7 @@ public class Student {
     public void addCourse(Course course) {
         courseList.put(course.courseToKey(), course);
         course.addStudent(this);
+        EventLog.getInstance().logEvent(new Event("✅ Course: " + course.courseLong() + " added to " + username));
     }
 
     // REQUIRES: course is in courseList
@@ -35,6 +38,7 @@ public class Student {
     public void removeCourse(Course course) {
         courseList.remove(course.courseToKey());
         course.removeStudent(this);
+        EventLog.getInstance().logEvent(new Event("✅ Course: " + course.courseLong() + " removed from " + username));
     }
 
     // EFFECTS: given the student, return a list of courses that this student shares with the given student.
@@ -49,7 +53,6 @@ public class Student {
                 sharedCourses.add(hasCourse);
             }
         }
-
         return sharedCourses; // TODO: check if empty, if so returns NoCourseSharedException
     }
 
@@ -82,7 +85,6 @@ public class Student {
                 sharedCourses.put(hasCourse.courseLong(), hasCourse.courseToKey());
             }
         }
-
         if (sharedCourses.size() == 0) {
             return null;
         } else {

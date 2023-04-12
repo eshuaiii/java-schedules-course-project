@@ -58,13 +58,12 @@ public class SearchStudentFrame extends FrameTemplate implements ActionListener 
                 JOptionPane.showMessageDialog(this, "No empty inputs, please!",
                         "Empty inputs!", JOptionPane.WARNING_MESSAGE);
             } else {
-                Student student = courseApp.accountList.searchStudent(usernameField.getText());
+                Student student = courseApp.accountList.searchStudent(username);
                 if (student == null) {
                     JOptionPane.showMessageDialog(this, "Oops - can't find this student!",
                             "Student not found", JOptionPane.WARNING_MESSAGE);
                 } else {
-                    Map<String, String> studentCourses =
-                            courseApp.accountList.searchStudent(username).getCourseNamesGUI();
+                    Map<String, String> studentCourses = student.getCourseNamesGUI();
                     new SearchResultsFrame("student", studentCourses, student, courseApp);
                     this.dispose();
                 }

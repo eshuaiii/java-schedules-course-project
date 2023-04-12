@@ -47,9 +47,9 @@ public class CourseAppGUI {
             jsonData = jsonReader.read();
             accountList = (AllAccounts) jsonData.get(0);
             courseList = (AllCourses) jsonData.get(1);
-            System.out.println("✅ Successfully loaded the data from" + JSON_STORE + " !");
+//            System.out.println("✅ Successfully loaded the data from" + JSON_STORE + " !");
         } catch (IOException e) {
-            System.out.println("⚠️ Unable to read from file: " + JSON_STORE);
+//            System.out.println("⚠️ Unable to read from file: " + JSON_STORE);
         }
     }
 
@@ -58,11 +58,11 @@ public class CourseAppGUI {
     //          If no incorrect inputs, creates a new student and adds to accountList.
     protected boolean signup(String username, String firstName, String lastName, String password) {
         if (accountList.getAccountList().get(username) != null) {
-            System.out.println("\n⚠️ Oops - seems like that username is taken.");
+//            System.out.println("\n⚠️ Oops - seems like that username is taken.");
             return false;
         } else {
             currentStudent = accountList.signup(username, firstName, lastName, password);
-            System.out.println("\n✅ Signup successful!");
+//            System.out.println("\n✅ Signup successful!");
             return true;
         }
     }
@@ -73,10 +73,10 @@ public class CourseAppGUI {
     protected boolean login(String username, String password) {
         currentStudent = accountList.login(username, password);
         if (currentStudent == null) {
-            System.out.println("\n⚠️ Login was not successful.");
+//            System.out.println("\n⚠️ Login was not successful.");
             return false;
         } else {
-            System.out.println("\n✅ Login successful!");
+//            System.out.println("\n✅ Login successful!");
             return true;
         }
     }
@@ -103,7 +103,7 @@ public class CourseAppGUI {
         Course removedCourse = currentStudent.getCourseList().get(courseToRemove);
         currentStudent.removeCourse(removedCourse);
         this.courseList.checkForEmptyCourse(removedCourse);
-        System.out.println("\n✅ Course removed!");
+//        System.out.println("\n✅ Course removed!");
     }
 
     // EFFECTS: searches for a course given user inputs
@@ -114,7 +114,7 @@ public class CourseAppGUI {
             courseNumInt = Integer.parseInt(courseNum);
             courseSectionInt = Integer.parseInt(courseSection);
         } catch (NumberFormatException e) {
-            System.out.println("Oops - the course number and section must be an integer!");
+//            System.out.println("Oops - the course number and section must be an integer!");
         }
 
         Course course = courseList.searchCourse(courseName, courseNumInt, courseSectionInt);
@@ -129,9 +129,9 @@ public class CourseAppGUI {
             jsonWriter.open();
             jsonWriter.write(accountList);
             jsonWriter.close();
-            System.out.println("✅ Saved the session to " +  JSON_STORE);
+//            System.out.println("✅ Saved the session to " +  JSON_STORE);
         } catch (FileNotFoundException e) {
-            System.out.println("⚠️ Unable to write to file: " + JSON_STORE);
+//            System.out.println("⚠️ Unable to write to file: " + JSON_STORE);
         }
     }
 
@@ -139,6 +139,6 @@ public class CourseAppGUI {
     // EFFECTS: signs the user out of the applet.
     protected void signOut() {
         currentStudent = null;
-        System.out.println("You've been signed out! See you soon. 👋");
+//        System.out.println("You've been signed out! See you soon. 👋");
     }
 }

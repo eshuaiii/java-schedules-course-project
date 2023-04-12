@@ -206,7 +206,7 @@ public class HomeFrame extends FrameTemplate implements ActionListener, ListSele
                     addAllToList(studentList, courseStudents);
                     // studentList.addAll(courseStudents); <- Java 11
                 }
-                System.out.println(courseJList.getSelectedValue());
+//                System.out.println(courseJList.getSelectedValue());
             }
         }
     }

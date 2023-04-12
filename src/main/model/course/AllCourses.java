@@ -1,5 +1,8 @@
 package model.course;
 
+import model.Event;
+import model.EventLog;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,8 +21,10 @@ public class AllCourses {
         Course course = new Course(courseName, courseNum, courseSection);
         if (courseList.get(course.courseToKey()) == null) {
             courseList.put(course.courseToKey(), course);
+            EventLog.getInstance().logEvent(new Event("✅ Course: " + course.courseLong() + " added to courseList."));
             return course;
         } else {
+            EventLog.getInstance().logEvent(new Event("ℹ️ Course: " + course.courseLong() + " exists in courseList."));
             return courseList.get(course.courseToKey());
         }
 
@@ -29,6 +34,8 @@ public class AllCourses {
     // EFFECTS: checks if a course has an empty studentList: if so, remove the reference to the course.
     public Boolean checkForEmptyCourse(Course course) {
         if (course.getStudentList().size() == 0) {
+            EventLog.getInstance().logEvent(new Event(
+                    "ℹ️ Empty course: " + course.courseLong() + " removed from courseList."));
             courseList.remove(course.courseToKey());
             return true;
         } else {

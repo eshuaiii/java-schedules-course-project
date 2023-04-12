@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import model.Event;
+import model.EventLog;
 import model.account.AllAccounts;
 import model.account.Student;
 import model.course.AllCourses;
@@ -39,6 +41,7 @@ public class JsonReader {
         ArrayList<Object> result = new ArrayList<>();
         result.add(accountList);
         result.add(courseList);
+        EventLog.getInstance().logEvent(new Event("📜 Successfully loaded the data from" + source));
         return result;
     }
 

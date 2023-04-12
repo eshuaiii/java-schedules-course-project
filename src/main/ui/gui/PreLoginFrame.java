@@ -53,15 +53,15 @@ public class PreLoginFrame extends FrameTemplate implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == loginButton) {
-            System.out.println("Opening Login!");
+//            System.out.println("Opening Login!");
             new LoginFrame(courseApp);
             this.dispose();
         } else if (e.getSource() == signUpButton) {
-            System.out.println("Opening Signup!");
+//            System.out.println("Opening Signup!");
             new SignupFrame(courseApp);
             this.dispose();
         } else if (e.getSource() == loadButton) {
-            System.out.println("Loading Data!");
+//            System.out.println("Loading Data!");
             courseApp.loadSession();
             JOptionPane.showMessageDialog(this,
                     "Data Loaded!",

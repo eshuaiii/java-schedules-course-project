@@ -1,7 +1,12 @@
 package ui.gui;
 
+import model.Event;
+import model.EventLog;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 // A template with primary components of every frame of the GUI.
 public class FrameTemplate extends JFrame {
@@ -14,13 +19,23 @@ public class FrameTemplate extends JFrame {
         this.courseApp = c;
         this.setTitle("Schedules: " + name);
         this.setSize(WIDTH,HEIGHT);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setResizable(true);
         this.setBackground(new Color(0xffffff));
         centreOnScreen();
         ImageIcon image = new ImageIcon("data/calendar.png");
         this.setIconImage(image.getImage());
-        // ImageIcon changes the icon; ImageIcon image = new ImageIcon(path), frame.setIconImage(image.getImage());
+
+        // code adapted from https://www.clear.rice.edu/comp310/JavaResources/frame_close.html
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                for (Event next : EventLog.getInstance()) {
+                    System.out.println(next.toString());
+                }
+                System.exit(0);
+            }
+        });
     }
 
     // MODIFIES: this
@@ -31,5 +46,6 @@ public class FrameTemplate extends JFrame {
         int height = Toolkit.getDefaultToolkit().getScreenSize().height;
         setLocation((width - getWidth()) / 2, (height - getHeight()) / 2);
     }
+
 
 }

@@ -1,5 +1,7 @@
 package model.course;
 
+import model.Event;
+import model.EventLog;
 import model.account.Student;
 import org.json.JSONObject;
 import persistence.Writable;
@@ -25,6 +27,8 @@ public class Course implements Writable {
     // EFFECTS: adds a student to the course's studentList.
     // TODO: Modify student again here, and set check for MR in Student. Is public a bad idea?
     public Boolean addStudent(Student student) {
+        EventLog.getInstance().logEvent(new Event(
+                "✅ Student " + student.getUsername() + " added to " + this.courseLong()));
         return studentList.add(student);
     }
 
@@ -32,6 +36,8 @@ public class Course implements Writable {
     // EFFECTS: removes a student from the course's studentList
     // TODO: Modify student again here, and set check for MR in Student. Is public a bad idea?
     public Boolean removeStudent(Student student) {
+        EventLog.getInstance().logEvent(new Event(
+                "✅ Student " + student.getUsername() + " removed from " + this.courseLong()));
         return studentList.remove(student);
     }
 

@@ -8,7 +8,7 @@ and see who was in their classes. However, there were some limitations, such as 
 manually add in the student after they signed up (moving their details from a Google Form to the database),
 and a slow interface overall.
 
-I want to extend this idea further into my CPSC 210 term project and recreate this idea. The applet would
+I want to extend this idea further into my course term project and recreate this idea. The applet would
 store different user accounts (locally to satisfy the internet constraint), then enable each user to input
 in their courses. The applet would then store these to their account, and parse through to find other students
 who are in their classes.
